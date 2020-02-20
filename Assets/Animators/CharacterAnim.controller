@@ -361,10 +361,19 @@ BlendTree:
     m_CycleOffset: 0
     m_DirectBlendParameter: velX
     m_Mirror: 0
+  - serializedVersion: 2
+    m_Motion: {fileID: -203655887218126122, guid: d081a8b05e6aadb4397b168b7a52c727,
+      type: 3}
+    m_Threshold: 7.871727
+    m_Position: {x: 0, y: 0}
+    m_TimeScale: 1
+    m_CycleOffset: 0
+    m_DirectBlendParameter: velX
+    m_Mirror: 0
   m_BlendParameter: velX
   m_BlendParameterY: velZ
   m_MinThreshold: -0.37434554
-  m_MaxThreshold: 6.4973817
+  m_MaxThreshold: 7.871727
   m_UseAutomaticThresholds: 0
   m_NormalizedBlendValues: 0
   m_BlendType: 2

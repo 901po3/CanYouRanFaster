@@ -5,10 +5,13 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New State", menuName = "HyukinState/AbilityData/Idle")]
 public class Idle : StateData
 {
-    public override void UpdateAbility(CharacterState characterStateBase, Animator animator)
+    public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        CharacterControl charControl = characterStateBase.GetCharacterControl(animator);
+        charControl = characterState.GetCharacterControl(animator);
+    }
 
+    public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
+    {
         if (charControl.isMoving)
         {
             charControl.GetComponent<Animator>().SetBool("isRunning", true);
@@ -19,5 +22,10 @@ public class Idle : StateData
             charControl.GetComponent<Animator>().SetFloat("velX", 0);
             charControl.GetComponent<Animator>().SetFloat("velZ", 0);
         }
+    }
+
+    public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
+    {
+        charControl = null;
     }
 }

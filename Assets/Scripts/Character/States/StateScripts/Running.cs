@@ -8,10 +8,13 @@ public class Running : StateData
     public float speed;
     public float rotSpeed;
 
-    public override void UpdateAbility(CharacterState characterState, Animator animator)
+    public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        CharacterControl charControl = characterState.GetCharacterControl(animator);
+        charControl = characterState.GetCharacterControl(animator);
+    }
 
+    public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
+    {
         if (!charControl.isMoving)
         {
             charControl.GetComponent<Animator>().SetBool("isRunning", false);
@@ -46,5 +49,10 @@ public class Running : StateData
             charControl.transform.Translate(Vector3.left * curSpeed * Time.fixedDeltaTime);
 
         Debug.Log(curSpeed);
+    }
+
+    public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
+    {
+        charControl = null;
     }
 }

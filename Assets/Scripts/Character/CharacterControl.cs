@@ -11,9 +11,4 @@ public class CharacterControl : MonoBehaviour
     public bool isMovingBackward = false;
     public bool isMovingRight = false;
     public bool isMovingLeft = false;
-
-    private void Start()
-    {
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
-    }
 }

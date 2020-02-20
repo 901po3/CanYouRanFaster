@@ -10,6 +10,7 @@ public class ManualInput : MonoBehaviour
     #region Input Actions
     private PlayerInputAction playerInputAction;
     private Vector2 playerAxis;
+    private bool isJumping;
     #endregion
 
     private void Awake()
@@ -18,9 +19,17 @@ public class ManualInput : MonoBehaviour
         animator = gameObject.GetComponent<Animator>();
         playerInputAction = new PlayerInputAction();
         playerInputAction.PlayerContols.Move.performed += ctx => playerAxis = ctx.ReadValue<Vector2>();
+        playerInputAction.PlayerContols.Jump.performed += ctx => isJumping = true;
+        playerInputAction.PlayerContols.Jump.canceled += ctx => isJumping = false;
     }
 
     private void Update()
+    {
+        Moving();
+        Jumping();
+    }
+
+    private void Moving()
     {
         charControl.isMoving = (playerAxis != Vector2.zero) ? true : false;
         charControl.isMovingForward = (playerAxis.y > 0) ? true : false;
@@ -30,6 +39,11 @@ public class ManualInput : MonoBehaviour
 
         animator.SetFloat("velX", Input.GetAxis("Horizontal"));
         animator.SetFloat("velZ", Input.GetAxis("Vertical"));
+    }
+
+    private void Jumping()
+    {
+
     }
 
     private void OnEnable()
