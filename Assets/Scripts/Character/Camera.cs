@@ -13,6 +13,7 @@ public class Camera : MonoBehaviour
     private GameObject cameraMan;
     private GameObject camPivot;
 
+    [SerializeField] float speed;
     [SerializeField] float rotSpeed;
     [SerializeField] float minHeight;
     [SerializeField] float maxHeight;
@@ -44,7 +45,23 @@ public class Camera : MonoBehaviour
 
     private void Update()
     {
-        Rotate();      
+        Rotate();
+        MoveToDistance();
+    }
+
+    private void MoveToDistance()
+    {
+        RaycastHit hit;
+        Vector3 dir = transform.position - playerPivot.transform.position;
+        if (Physics.Raycast(playerPivot.transform.position, dir, out hit, distance))
+        {
+            camPivot.transform.localPosition = Vector3.Lerp(camPivot.transform.localPosition, new Vector3(0, 0, -hit.distance), speed);
+        }
+        else
+        {
+            camPivot.transform.localPosition = Vector3.Lerp(dir, new Vector3(0, 0, -distance), speed);
+        }
+        transform.position = camPivot.transform.position;
     }
 
     private void Rotate()
@@ -58,8 +75,5 @@ public class Camera : MonoBehaviour
         Quaternion rot = Quaternion.Euler(angle);
         cameraMan.transform.rotation = Quaternion.Slerp(cameraMan.transform.rotation, rot, rotSpeed * Time.deltaTime);
         transform.rotation = cameraMan.transform.rotation;
-
-        camPivot.transform.localPosition = new Vector3(0, 0, -distance);
-        transform.position = camPivot.transform.position;
     }
 }
