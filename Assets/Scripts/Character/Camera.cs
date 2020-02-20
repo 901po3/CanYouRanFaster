@@ -20,7 +20,7 @@ public class Camera : MonoBehaviour
     [SerializeField] float distance;
 
     private void OnEnable()
-    {
+    { 
         cameraInputAction.Enable();
     }
 
@@ -44,11 +44,11 @@ public class Camera : MonoBehaviour
 
     private void FixedUpdate()
     {
-        cameraMan.transform.position = playerPivot.transform.position;
-        Rotate();
-
-        camPivot.transform.localPosition = new Vector3(0, 0,  - distance);
-        transform.position = camPivot.transform.position;
+        //cameraMan.transform.position = playerPivot.transform.position;
+        //Rotate();
+        //
+        //camPivot.transform.localPosition = new Vector3(0, 0,  - distance);
+        //transform.position = camPivot.transform.position;
     }
 
     private void Rotate()

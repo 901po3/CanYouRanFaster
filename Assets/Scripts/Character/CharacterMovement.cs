@@ -4,23 +4,20 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
-    private GameObject camera;
+    public GameObject camera;
 
-    [SerializeField] float rotSpeed;
+    public float rotSpeed;
 
     #region Input Actions
     private PlayerInputAction playerInputAction;
-    private Vector2 playerAxis;
+    public Vector2 playerAxis;
     #endregion
 
     #region Animation Related
-    private Animator anim;
-    private int IdleNum = 0;
-    private bool isNewIdleOn = false;
-    private bool isRunning = false;
+    public Animator anim;
     #endregion
 
-    [SerializeField] float runningSpeed;
+    public float runningSpeed;
 
     private void OnEnable()
     {
@@ -46,15 +43,10 @@ public class CharacterMovement : MonoBehaviour
 
     private void Update()
     {
-
+        
     }
 
-    private void FixedUpdate()
-    {
-        Move();
-    }
-
-    private void Move()
+    private void Rotate()
     {
         if (playerAxis != Vector2.zero)
         {
@@ -62,13 +54,5 @@ public class CharacterMovement : MonoBehaviour
             Quaternion qut = Quaternion.LookRotation(dir);
             transform.rotation = Quaternion.Slerp(transform.rotation, qut, rotSpeed * Time.fixedDeltaTime);
         }
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-        anim.SetFloat("velX", horizontal);
-        anim.SetFloat("velZ", vertical);
-        isRunning = (horizontal != 0 || vertical != 0) ? true : false;
-        anim.SetBool("isRunning", isRunning);
-        transform.Translate((Vector3.forward * playerAxis.y + Vector3.right * playerAxis.x) * runningSpeed * Time.fixedDeltaTime);
     }
-
 }
