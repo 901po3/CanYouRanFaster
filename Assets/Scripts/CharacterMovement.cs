@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class CharacterMovement : MonoBehaviour
 {
+    private GameObject camera;
+
+    [SerializeField] float rotSpeed;
+
     #region Input Actions
     private PlayerInputAction playerInputAction;
     private Vector2 playerAxis;
@@ -11,6 +15,8 @@ public class CharacterMovement : MonoBehaviour
 
     #region Animation Related
     private Animator anim;
+    private int IdleNum = 0;
+    private bool isNewIdleOn = false;
     private bool isRunning = false;
     #endregion
 
@@ -34,7 +40,13 @@ public class CharacterMovement : MonoBehaviour
 
     private void Start()
     {
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
         anim = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+
     }
 
     private void FixedUpdate()
@@ -44,7 +56,12 @@ public class CharacterMovement : MonoBehaviour
 
     private void Move()
     {
-        Debug.Log(playerAxis);
+        if (playerAxis != Vector2.zero)
+        {
+            Vector3 dir = (transform.position - new Vector3(camera.transform.position.x, transform.position.y, camera.transform.position.z)).normalized;
+            Quaternion qut = Quaternion.LookRotation(dir);
+            transform.rotation = Quaternion.Slerp(transform.rotation, qut, rotSpeed * Time.fixedDeltaTime);
+        }
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         anim.SetFloat("velX", horizontal);
