@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterState : StateMachineBehaviour
 {
+    private CharacterControl characterMovement;
     public List<StateData> ListAbilityData = new List<StateData>();
 
     public void UpdateAll(CharacterState characterState, Animator animator)
@@ -19,7 +20,6 @@ public class CharacterState : StateMachineBehaviour
         UpdateAll(this, animator);
     }
 
-    private CharacterControl characterMovement;
     public CharacterControl GetCharacterControl(Animator animator)
     {
         if(characterMovement == null) 

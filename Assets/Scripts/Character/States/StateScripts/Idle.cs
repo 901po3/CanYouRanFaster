@@ -7,17 +7,17 @@ public class Idle : StateData
 {
     public override void UpdateAbility(CharacterState characterStateBase, Animator animator)
     {
-        CharacterControl playerCS = characterStateBase.GetCharacterControl(animator);
+        CharacterControl charControl = characterStateBase.GetCharacterControl(animator);
 
-        if (playerCS.playerAxis != Vector2.zero)
+        if (charControl.isMoving)
         {
-            playerCS.anim.SetBool("isRunning", true);
+            charControl.GetComponent<Animator>().SetBool("isRunning", true);
             return;
         }
         else
         {
-            playerCS.anim.SetFloat("velX", 0);
-            playerCS.anim.SetFloat("velZ", 0);
+            charControl.GetComponent<Animator>().SetFloat("velX", 0);
+            charControl.GetComponent<Animator>().SetFloat("velZ", 0);
         }
     }
 }
