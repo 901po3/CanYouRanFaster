@@ -471,5 +471,15 @@ PrefabInstance:
       propertyPath: speed
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 7226704675790106524, guid: 75643f49e93f37d4a8e5ba21a362987a,
+        type: 3}
+      propertyPath: zoomSpeed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7226704675790106524, guid: 75643f49e93f37d4a8e5ba21a362987a,
+        type: 3}
+      propertyPath: rotSpeed
+      value: 180
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 75643f49e93f37d4a8e5ba21a362987a, type: 3}

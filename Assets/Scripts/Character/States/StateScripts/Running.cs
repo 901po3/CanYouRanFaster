@@ -34,7 +34,7 @@ public class Running : StateData
         if (charControl.isMovingRight || charControl.isMovingLeft)
             movingH = true;
         if (movingV && movingH)
-            curSpeed = Mathf.Sin(45);
+            curSpeed = curSpeed * Mathf.Sin(45);
 
         if (charControl.isMovingForward)
             charControl.transform.Translate(Vector3.forward * curSpeed * Time.fixedDeltaTime);           
@@ -44,5 +44,7 @@ public class Running : StateData
             charControl.transform.Translate(Vector3.right * curSpeed * Time.fixedDeltaTime);
         else if(charControl.isMovingLeft)
             charControl.transform.Translate(Vector3.left * curSpeed * Time.fixedDeltaTime);
+
+        Debug.Log(curSpeed);
     }
 }
