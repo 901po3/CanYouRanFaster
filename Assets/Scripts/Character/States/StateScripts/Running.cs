@@ -26,13 +26,23 @@ public class Running : StateData
         charControl.transform.rotation
            = Quaternion.Slerp(charControl.transform.rotation, qut, rotSpeed * Time.fixedDeltaTime);
 
+        float curSpeed = speed;
+        bool movingV = false;
+        bool movingH = false;
+        if (charControl.isMovingForward || charControl.isMovingBackward)
+            movingV = true;
+        if (charControl.isMovingRight || charControl.isMovingLeft)
+            movingH = true;
+        if (movingV && movingH)
+            curSpeed = Mathf.Sin(45);
+
         if (charControl.isMovingForward)
-            charControl.transform.Translate(Vector3.forward * speed * Time.fixedDeltaTime);
+            charControl.transform.Translate(Vector3.forward * curSpeed * Time.fixedDeltaTime);           
         else if(charControl.isMovingBackward)
-            charControl.transform.Translate(Vector3.back * speed * Time.fixedDeltaTime);
+            charControl.transform.Translate(Vector3.back * curSpeed * Time.fixedDeltaTime);
         if(charControl.isMovingRight)
-            charControl.transform.Translate(Vector3.right * speed * Time.fixedDeltaTime);
+            charControl.transform.Translate(Vector3.right * curSpeed * Time.fixedDeltaTime);
         else if(charControl.isMovingLeft)
-            charControl.transform.Translate(Vector3.left * speed * Time.fixedDeltaTime);
+            charControl.transform.Translate(Vector3.left * curSpeed * Time.fixedDeltaTime);
     }
 }
