@@ -42,23 +42,24 @@ public class Camera : MonoBehaviour
         camPivot = GameObject.Find("camPivot");
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
-        //cameraMan.transform.position = playerPivot.transform.position;
-        //Rotate();
-        //
-        //camPivot.transform.localPosition = new Vector3(0, 0,  - distance);
-        //transform.position = camPivot.transform.position;
+        Rotate();      
     }
 
     private void Rotate()
     {
+        cameraMan.transform.position = playerPivot.transform.position;
+
         Vector3 angle = cameraMan.transform.eulerAngles;
         angle.y += cameraAxis.x * Time.fixedDeltaTime * rotSpeed;
         angle.x += cameraAxis.y * Time.fixedDeltaTime * rotSpeed;
         angle.x = Mathf.Clamp(angle.x, minHeight, maxHeight);
         Quaternion rot = Quaternion.Euler(angle);
-        cameraMan.transform.rotation = Quaternion.Slerp(cameraMan.transform.rotation, rot, rotSpeed * Time.fixedDeltaTime);
+        cameraMan.transform.rotation = Quaternion.Slerp(cameraMan.transform.rotation, rot, rotSpeed * Time.deltaTime);
         transform.rotation = cameraMan.transform.rotation;
+
+        camPivot.transform.localPosition = new Vector3(0, 0, -distance);
+        transform.position = camPivot.transform.position;
     }
 }
