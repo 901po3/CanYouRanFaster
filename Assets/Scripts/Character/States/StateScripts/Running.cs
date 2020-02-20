@@ -11,13 +11,14 @@ public class Running : StateData
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         charControl = characterState.GetCharacterControl(animator);
+        anim = charControl.GetComponent<Animator>();
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         if (!charControl.isMoving)
         {
-            charControl.GetComponent<Animator>().SetBool("isRunning", false);
+            anim.SetBool("isRunning", false);
             return;
         }
 
@@ -54,5 +55,6 @@ public class Running : StateData
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         charControl = null;
+        anim = null;
     }
 }
