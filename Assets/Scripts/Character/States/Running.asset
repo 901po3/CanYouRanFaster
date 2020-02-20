@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Running
   m_EditorClassIdentifier: 
   duration: 0
-  speed: 5
+  speed: 10
   rotSpeed: 5
