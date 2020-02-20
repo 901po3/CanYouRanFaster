@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CharacterMovement : MonoBehaviour
+public class CharacterControl : MonoBehaviour
 {
     public GameObject camera;
 
@@ -12,6 +12,9 @@ public class CharacterMovement : MonoBehaviour
     private PlayerInputAction playerInputAction;
     public Vector2 playerAxis;
     #endregion
+    public bool isMoving = false;
+    public bool isMovingForward = false;
+    public bool isMovingRight = false;
 
     #region Animation Related
     public Animator anim;
