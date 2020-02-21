@@ -5,6 +5,7 @@ using UnityEngine;
 public class LedgeChecker : MonoBehaviour
 {
     public bool isGrabbingLedge = false;
+    
     Ledge ledge = null;
 
     private void OnTriggerEnter(Collider other)
@@ -13,6 +14,8 @@ public class LedgeChecker : MonoBehaviour
         if(ledge != null)
         {
             isGrabbingLedge = true;
+            Vector3 eular = other.transform.rotation.eulerAngles;
+            GetComponentInParent<CharacterControl>().transform.localRotation = Quaternion.Euler(eular);
         }
     }
 
