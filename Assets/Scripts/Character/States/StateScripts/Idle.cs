@@ -8,6 +8,7 @@ public class Idle : StateData
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         charControl = characterState.GetCharacterControl(animator);
+        animator.SetBool("isJumping", false);
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -22,11 +23,6 @@ public class Idle : StateData
         {
             animator.SetBool("isRunning", true);
             return;
-        }
-        else
-        {
-            animator.SetFloat("velX", 0);
-            animator.SetFloat("velZ", 0);
         }
     }
 

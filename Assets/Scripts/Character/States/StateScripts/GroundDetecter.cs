@@ -47,13 +47,16 @@ public class GroundDetecter : StateData
             }
         }
 
-        foreach(GameObject o in charControl.bottomSpheres)
+        if(charControl.RIGIDBODY.velocity.y < 0.0f)
         {
-            Debug.DrawRay(o.transform.position, Vector3.down * distance, Color.yellow);
-            RaycastHit hit;
-            if(Physics.Raycast(o.transform.position, Vector3.down, out hit, distance))
+            foreach (GameObject o in charControl.bottomSpheres)
             {
-                return true;
+                Debug.DrawRay(o.transform.position, Vector3.down * distance, Color.yellow);
+                RaycastHit hit;
+                if (Physics.Raycast(o.transform.position, Vector3.down, out hit, distance))
+                {
+                    return true;
+                }
             }
         }
 

@@ -11,6 +11,7 @@ public class Jumping : StateData
     {
         charControl = characterState.GetCharacterControl(animator);
         charControl.RIGIDBODY.AddForce(Vector3.up * jumpForce);
+        animator.SetBool("grounded", false);
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

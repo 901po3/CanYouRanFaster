@@ -67,10 +67,17 @@ public class Camera : MonoBehaviour
     private void Rotate()
     {
         cameraMan.transform.position = playerPivot.transform.position;
-
         Vector3 angle = cameraMan.transform.eulerAngles;
-        angle.y += cameraAxis.x * Time.fixedDeltaTime * rotSpeed;
-        angle.x += cameraAxis.y * Time.fixedDeltaTime * rotSpeed;
+        if (Input.GetMouseButton(1))
+        {
+            angle.y += Input.GetAxis("Mouse X") * Time.fixedDeltaTime * rotSpeed;
+            angle.x += Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * rotSpeed;
+        }
+        else
+        {
+            angle.y += cameraAxis.x * Time.fixedDeltaTime * rotSpeed;
+            angle.x += cameraAxis.y * Time.fixedDeltaTime * rotSpeed;
+        }
         angle.x = Mathf.Clamp(angle.x, minHeight, maxHeight);
         Quaternion rot = Quaternion.Euler(angle);
         cameraMan.transform.rotation = Quaternion.Slerp(cameraMan.transform.rotation, rot, rotSpeed * Time.deltaTime);
