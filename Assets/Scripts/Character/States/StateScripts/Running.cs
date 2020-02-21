@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New State", menuName = "HyukinState/AbilityData/Running")]
+[CreateAssetMenu(fileName = "New State", menuName = "Hyukin's_Game/AbilityData/Running")]
 public class Running : StateData
 {
     public float speed;
@@ -11,14 +11,15 @@ public class Running : StateData
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         charControl = characterState.GetCharacterControl(animator);
-        anim = charControl.GetComponent<Animator>();
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
+        CharacterControl charControl = characterState.GetCharacterControl(animator);
+
         if (!charControl.isMoving)
         {
-            anim.SetBool("isRunning", false);
+            animator.SetBool("isRunning", false);
             return;
         }
 
@@ -48,13 +49,10 @@ public class Running : StateData
             charControl.transform.Translate(Vector3.right * curSpeed * Time.fixedDeltaTime);
         else if(charControl.isMovingLeft)
             charControl.transform.Translate(Vector3.left * curSpeed * Time.fixedDeltaTime);
-
-        Debug.Log(curSpeed);
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         charControl = null;
-        anim = null;
     }
 }

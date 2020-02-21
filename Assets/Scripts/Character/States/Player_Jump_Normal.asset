@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f66e58d7843838c43acddef1936971e4, type: 3}
-  m_Name: Player_Jump_Normal_landing
+  m_Script: {fileID: 11500000, guid: db8fc84e0143fec4199f4811adfec4f6, type: 3}
+  m_Name: Player_Jump_Normal
   m_EditorClassIdentifier: 
+  jumpForce: 350

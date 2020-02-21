@@ -5,7 +5,6 @@ using UnityEngine;
 public abstract class StateData : ScriptableObject
 {
     protected CharacterControl charControl;
-    protected Animator anim;
 
     public abstract void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo);
     public abstract void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo);

@@ -351,10 +351,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2391654754526333721}
   - component: {fileID: 7226704676802207750}
-  - component: {fileID: 7226704676802207751}
   - component: {fileID: 7226704676802207749}
   - component: {fileID: 1687588218108410125}
   - component: {fileID: 7226704676321149146}
+  - component: {fileID: 1193403745}
   m_Layer: 0
   m_Name: Character
   m_TagString: Player
@@ -394,22 +394,8 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 112
   m_CollisionDetection: 0
---- !u!136 &7226704676802207751
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1687588218108410122}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 1.8
-  m_Direction: 1
-  m_Center: {x: 0, y: 0.9, z: 0}
 --- !u!95 &7226704676802207749
 Animator:
   serializedVersion: 3
@@ -441,12 +427,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c6201d68946521429ebb8a09b01d9fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  camera: {fileID: 0}
+  camera: {fileID: 7226704675790106520}
   isMoving: 0
   isMovingForward: 0
   isMovingBackward: 0
   isMovingRight: 0
   isMovingLeft: 0
+  isJumping: 0
 --- !u!114 &7226704676321149146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -459,6 +446,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7deabdb806654043b1ff07dae23faa0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &1193403745
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687588218108410122}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.5, y: 1.75, z: 0.5}
+  m_Center: {x: 0, y: 0.87, z: 0}
 --- !u!1 &2097467648691458719
 GameObject:
   m_ObjectHideFlags: 0
@@ -1948,7 +1948,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7226704675271859280}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.780427, y: -0.820868, z: 0.7781787}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2054,11 +2054,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 715c8a644cc5ace4c9caaeef157a15fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 0
-  rotSpeed: 120
+  speed: 10
+  rotSpeed: 130
   minHeight: 0
   maxHeight: 40
-  zoomSpeed: 3
+  zoomSpeed: 1
   distance: 3
 --- !u!1 &7226704676600185129
 GameObject:
