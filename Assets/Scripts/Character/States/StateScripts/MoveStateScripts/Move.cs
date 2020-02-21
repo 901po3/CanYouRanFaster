@@ -12,6 +12,11 @@ public class Move : MovingStateData
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
+        if(charControl.isJumping)
+        {
+            animator.SetBool("isJumping", true);
+            return;
+        }
 
         if (!charControl.isMoving)
         {

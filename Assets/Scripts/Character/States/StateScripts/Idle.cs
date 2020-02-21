@@ -15,8 +15,8 @@ public class Idle : StateData
         if(charControl.isJumping)
         {
             animator.SetBool("isJumping", true);
+            return;
         }
-
 
         if (charControl.isMoving)
         {

@@ -9,6 +9,9 @@ public class Landing : StateData
     {
         charControl = characterState.GetCharacterControl(animator);
         animator.SetBool("isJumping", false);
+        charControl.MoveToFalse();
+        animator.SetFloat("velX", 0);
+        animator.SetFloat("velZ", 0);
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

@@ -38,6 +38,15 @@ public class CharacterControl : MonoBehaviour
         CreateAllSpheres();
     }
 
+    public void MoveToFalse()
+    {
+        isMoving = false;
+        isMovingForward = false;
+        isMovingBackward = false;
+        isMovingRight = false;
+        isMovingLeft = false;
+    }
+
     #region EdgeSpheres
     private void CreateAllSpheres()
     {

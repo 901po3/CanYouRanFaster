@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 346b086e57f71754dacad3fc9a87236a, type: 3}
   m_Name: Player_Jump_Normal_GroundDetecter
   m_EditorClassIdentifier: 
-  checkTime: 0.3
+  checkTime: 0.2
   distance: 0.05
