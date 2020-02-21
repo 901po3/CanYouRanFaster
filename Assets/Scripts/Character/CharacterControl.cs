@@ -14,6 +14,8 @@ public class CharacterControl : MonoBehaviour
     public List<GameObject> rightSpheres = new List<GameObject>();
     public List<GameObject> leftSpheres = new List<GameObject>();
 
+    public LedgeChecker ledgeChecker;
+
     public bool isMoving = false;
     public bool isMovingForward = false;
     public bool isMovingBackward = false;
@@ -39,6 +41,8 @@ public class CharacterControl : MonoBehaviour
     private void Awake()
     {
         CreateAllSpheres();
+
+        ledgeChecker = GetComponentInChildren<LedgeChecker>();
     }
 
     private void FixedUpdate()
