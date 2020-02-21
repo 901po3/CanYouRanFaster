@@ -10,7 +10,7 @@ public class ForceTransition : StateData
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        charControl = characterState.GetCharacterControl(animator);
+
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
@@ -24,6 +24,6 @@ public class ForceTransition : StateData
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         animator.SetBool("forceTransition", false);
-        charControl = null;
+
     }
 }

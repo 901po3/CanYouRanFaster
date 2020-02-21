@@ -7,19 +7,21 @@ public class MoveFront : MovingStateData
 {
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        charControl = characterState.GetCharacterControl(animator);
+
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
+        CharacterControl charControl = characterState.GetCharacterControl(animator);
+
         if (!charControl.isMoving)
         {
             animator.SetBool("isRunning", false);
             return;
         }
 
-        RoateToCamFacingDir();
-        float curSpeed = CalculateSpeed(stateInfo);
+        RoateToCamFacingDir(charControl);
+        float curSpeed = CalculateSpeed(charControl, stateInfo);
 
         if (charControl.isMovingForward && !CheckEdge(charControl.frontSpheres, charControl.transform.forward))
             charControl.transform.Translate(Vector3.forward * curSpeed * Time.fixedDeltaTime);
@@ -27,6 +29,6 @@ public class MoveFront : MovingStateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        charControl = null;
+
     }
 }

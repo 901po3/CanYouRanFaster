@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New State", menuName = "Hyukin's_Game/AbilityData/Landing")]
 public class Landing : StateData
 {
+    CharacterControl charControl;
+
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         charControl = characterState.GetCharacterControl(animator);
@@ -21,6 +23,6 @@ public class Landing : StateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        charControl = null;
+
     }
 }

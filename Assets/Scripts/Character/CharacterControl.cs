@@ -21,6 +21,9 @@ public class CharacterControl : MonoBehaviour
     public bool isMovingLeft = false;
     public bool isJumping = false;
 
+    public float gravityMultiplier = 0.0f;
+    public float pullMultiplier = 0.0f;
+
     private Rigidbody rigidbody;
     public Rigidbody RIGIDBODY
     {
@@ -36,6 +39,18 @@ public class CharacterControl : MonoBehaviour
     private void Awake()
     {
         CreateAllSpheres();
+    }
+
+    private void FixedUpdate()
+    {
+        if(RIGIDBODY.velocity.y < 0.0f)
+        {
+            RIGIDBODY.velocity += Vector3.down * gravityMultiplier;
+        }
+        if(RIGIDBODY.velocity.y > 0.0f && !isJumping)
+        {
+            RIGIDBODY.velocity += Vector3.down * pullMultiplier;
+        }
     }
 
     public void MoveToFalse()
@@ -82,7 +97,6 @@ public class CharacterControl : MonoBehaviour
         for (int i = 0; i < iterations; i++)
         {
             Vector3 pos = start.transform.position + (dir * seg * (i));
-            Debug.Log(pos);
             GameObject obj = CreateEdgeSphere(pos);
             sphereList.Add(obj);
         }

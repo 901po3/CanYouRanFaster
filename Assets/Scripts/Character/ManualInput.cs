@@ -36,22 +36,14 @@ public class ManualInput : MonoBehaviour
         charControl.isMovingBackward = (playerAxis.y < 0) ? true : false;
         charControl.isMovingRight = (playerAxis.x > 0) ? true : false;
         charControl.isMovingLeft = (playerAxis.x < 0) ? true : false;
-        Debug.Log(playerAxis);
+
         animator.SetFloat("velX", Input.GetAxis("Horizontal"));
         animator.SetFloat("velZ", Input.GetAxis("Vertical"));
     }
 
     private void Jumping()
     {
-        if(jumpInput && !charControl.isJumping)
-        {
-            jumpInput = false;
-            charControl.isJumping = true;
-        }
-        else
-        {
-            charControl.isJumping = false;
-        }
+       charControl.isJumping = jumpInput;
     }
 
     private void OnEnable()

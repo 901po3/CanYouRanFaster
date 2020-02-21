@@ -13,14 +13,16 @@ public class GroundDetecter : StateData
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        charControl = characterState.GetCharacterControl(animator);
+
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        if(stateInfo.normalizedTime >= checkTime)
+        CharacterControl charControl = characterState.GetCharacterControl(animator);
+
+        if (stateInfo.normalizedTime >= checkTime)
         {
-            if (IsGrounded())
+            if (IsGrounded(charControl))
             {
                 animator.SetBool("grounded", true);
             }
@@ -33,11 +35,11 @@ public class GroundDetecter : StateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        charControl = null;
+
     }
 
-    private bool IsGrounded()
-    {
+    private bool IsGrounded(CharacterControl charControl)
+    {       
         if(charControl.RIGIDBODY.velocity.y <= 0.0f && charControl.RIGIDBODY.velocity.y > -0.01f)
         {
             groundTimer += Time.deltaTime;

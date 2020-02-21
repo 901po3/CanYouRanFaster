@@ -6,6 +6,9 @@ using UnityEngine;
 public class Jumping : StateData
 {
     public float jumpForce;
+    public AnimationCurve graviy;
+    public AnimationCurve pull;
+    CharacterControl charControl;
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
@@ -16,11 +19,12 @@ public class Jumping : StateData
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-
+        charControl.gravityMultiplier = graviy.Evaluate(stateInfo.normalizedTime);
+        charControl.pullMultiplier = pull.Evaluate(stateInfo.normalizedTime);
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        charControl = null;
+
     }
 }

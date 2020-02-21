@@ -13,8 +13,9 @@ public class MovingStateData : StateData
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo) { }
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo) { }
 
-    protected float CalculateSpeed(AnimatorStateInfo stateInfo)
+    protected float CalculateSpeed(CharacterControl charControl, AnimatorStateInfo stateInfo)
     {
+
         float curSpeed = speed;
         bool movingV = false;
         bool movingH = false;
@@ -28,7 +29,7 @@ public class MovingStateData : StateData
         return curSpeed;
     }
 
-    protected void RoateToCamFacingDir()
+    protected void RoateToCamFacingDir(CharacterControl charControl)
     {
         Vector3 dir = (charControl.transform.position -
             new Vector3(charControl.camera.transform.position.x, charControl.transform.position.y, charControl.camera.transform.position.z)).normalized;
