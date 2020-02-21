@@ -118,7 +118,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ListAbilityData:
-  - {fileID: 11400000, guid: 39209eeee7728a44c9fc6996099e2cc1, type: 2}
+  - {fileID: 11400000, guid: 6690695723b42a148907ab587cf19d83, type: 2}
+  - {fileID: 11400000, guid: 43bf9efe457039a4183ab45d3b35bca1, type: 2}
+  - {fileID: 11400000, guid: 023c6fd2a2da3b340864baada24f9429, type: 2}
+  - {fileID: 11400000, guid: a64c1b0bff1631447b45f415226ea12d, type: 2}
 --- !u!1107 &-5695176278332328654
 AnimatorStateMachine:
   serializedVersion: 5
@@ -130,7 +133,7 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -8799870254817949849}
-    m_Position: {x: 20, y: 290, z: 0}
+    m_Position: {x: 20, y: 280, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 298015725749453394}
     m_Position: {x: 20, y: 190, z: 0}
@@ -504,6 +507,7 @@ MonoBehaviour:
   ListAbilityData:
   - {fileID: 11400000, guid: 227e821e4313d9c409226563cd08c8c0, type: 2}
   - {fileID: 11400000, guid: 2e1fed7897777004fa4ff921d100419b, type: 2}
+  - {fileID: 11400000, guid: d800029113c520943a348e71bc7e83e4, type: 2}
 --- !u!206 &7642475372753270215
 BlendTree:
   m_ObjectHideFlags: 1
