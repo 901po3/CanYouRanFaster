@@ -56,13 +56,21 @@ public class Camera : MonoBehaviour
         if (Physics.Raycast(playerPivot.transform.position, dir, out hit, distance))
         {
             if(hit.transform.tag != "Player")
-                camPivot.transform.localPosition = Vector3.Lerp(camPivot.transform.localPosition, new Vector3(0, 0, -hit.distance), speed);
+                camPivot.transform.localPosition = Vector3.Lerp(camPivot.transform.localPosition, new Vector3(0, 0, -hit.distance), 10);
         }
         else
         {
-            camPivot.transform.localPosition = Vector3.Lerp(dir, new Vector3(0, 0, -distance), speed);
+            camPivot.transform.localPosition = Vector3.Lerp(dir, new Vector3(0, 0, -distance), 10);
         }
-        transform.position = camPivot.transform.position;
+        if(cameraAxis == Vector2.zero)
+        {
+            transform.position = new Vector3(camPivot.transform.position.x, transform.position.y, camPivot.transform.position.z);
+            transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, camPivot.transform.position.y, transform.position.z), speed * Time.deltaTime);
+        }
+        else
+        {
+            transform.position = camPivot.transform.position;
+        }
     }
 
     private void Rotate()
