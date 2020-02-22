@@ -5,6 +5,7 @@ using UnityEngine;
 public class LedgeChecker : MonoBehaviour
 {
     public bool isGrabbingLedge = false;
+    public Ledge grabbedLedge;
     
     Ledge ledge = null;
 
@@ -13,9 +14,8 @@ public class LedgeChecker : MonoBehaviour
         ledge = other.GetComponent<Ledge>();
         if(ledge != null)
         {
+            grabbedLedge = ledge;
             isGrabbingLedge = true;
-            Vector3 eular = other.transform.rotation.eulerAngles;
-            GetComponentInParent<CharacterControl>().transform.localRotation = Quaternion.Euler(eular);
         }
     }
 
@@ -24,6 +24,7 @@ public class LedgeChecker : MonoBehaviour
         ledge = other.GetComponent<Ledge>();
         if (ledge != null)
         {
+            grabbedLedge = null;
             isGrabbingLedge = false;
         }
     }

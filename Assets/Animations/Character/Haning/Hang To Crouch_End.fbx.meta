@@ -1,11 +1,11 @@
 fileFormatVersion: 2
-guid: 27452c444258cbc46a8d7293f9c4d798
+guid: b080d8be2aa09d24ab739aaf5a9f98a2
 ModelImporter:
   serializedVersion: 19300
   internalIDToNameTable:
   - first:
       74: -203655887218126122
-    second: Hang To Crouch
+    second: Hang To Crouch_End
   externalObjects: {}
   materials:
     materialImportMode: 1
@@ -35,11 +35,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Hang To Crouch
+      name: Hang To Crouch_End
       takeName: mixamo.com
       internalID: 0
-      firstFrame: 0
-      lastFrame: 52
+      firstFrame: 53
+      lastFrame: 68
       wrapMode: 0
       orientationOffsetY: 0
       level: -0.7

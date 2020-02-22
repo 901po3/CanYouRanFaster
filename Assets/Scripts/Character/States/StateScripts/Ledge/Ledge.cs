@@ -4,14 +4,6 @@ using UnityEngine;
 
 public class Ledge : MonoBehaviour
 {
-
-    void Start()
-    {
-
-    }
-
-    void Update()
-    {
-
-    }
+    public Vector3 offset;
+    public Vector3 endPosition;
 }
