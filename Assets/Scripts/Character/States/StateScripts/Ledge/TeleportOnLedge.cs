@@ -11,7 +11,7 @@ public class TeleportOnLedge : StateData
 
         charControl.transform.position = charControl.ledgeChecker.grabbedLedge.endPosition;
 
-        //charControl.s
+        //charControl.transform.parent = 
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

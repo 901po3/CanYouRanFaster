@@ -70,13 +70,13 @@ public class Camera : MonoBehaviour
         Vector3 angle = cameraMan.transform.eulerAngles;
         if (Input.GetMouseButton(1))
         {
-            angle.y += Input.GetAxis("Mouse X") * Time.fixedDeltaTime * rotSpeed;
-            angle.x += Input.GetAxis("Mouse Y") * Time.fixedDeltaTime * rotSpeed;
+            angle.y += Input.GetAxis("Mouse X") * Time.deltaTime * rotSpeed;
+            angle.x += Input.GetAxis("Mouse Y") * Time.deltaTime * rotSpeed;
         }
         else
         {
-            angle.y += cameraAxis.x * Time.fixedDeltaTime * rotSpeed;
-            angle.x += cameraAxis.y * Time.fixedDeltaTime * rotSpeed;
+            angle.y += cameraAxis.x * Time.deltaTime * rotSpeed;
+            angle.x += cameraAxis.y * Time.deltaTime * rotSpeed;
         }
         angle.x = Mathf.Clamp(angle.x, minHeight, maxHeight);
         Quaternion rot = Quaternion.Euler(angle);

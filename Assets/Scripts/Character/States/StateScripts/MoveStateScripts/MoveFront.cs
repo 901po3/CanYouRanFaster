@@ -23,8 +23,8 @@ public class MoveFront : MovingStateData
         RoateToCamFacingDir(charControl);
         float curSpeed = CalculateSpeed(charControl, stateInfo);
 
-        if (charControl.isMovingForward && !CheckEdge(charControl.frontSpheres, charControl.transform.forward))
-            charControl.transform.Translate(Vector3.forward * curSpeed * Time.fixedDeltaTime);
+        if (charControl.isMovingForward && !CheckEdge(charControl, charControl.frontSpheres, charControl.transform.forward))
+            charControl.transform.Translate(Vector3.forward * curSpeed * Time.deltaTime);
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

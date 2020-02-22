@@ -8,6 +8,7 @@ public class MovingStateData : StateData
     public float speed;
     public float rotSpeed;
     public float blockDistance;
+    private bool self;
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo) { }
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo) { }
@@ -38,15 +39,25 @@ public class MovingStateData : StateData
         charControl.transform.rotation = Quaternion.Slerp(charControl.transform.rotation, qut, rotSpeed * Time.fixedDeltaTime);
     }
 
-    protected bool CheckEdge(List<GameObject> sphereList, Vector3 dir)
+    protected bool CheckEdge(CharacterControl charControl, List<GameObject> sphereList, Vector3 dir)
     {
         foreach (GameObject o in sphereList)
         {
+            self = false;
             Debug.DrawRay(o.transform.position, dir * blockDistance, Color.yellow);
             RaycastHit hit;
             if (Physics.Raycast(o.transform.position, dir, out hit, blockDistance))
             {
-                return true;
+                foreach(Collider c in charControl.ragdollParts)
+                {
+                    if(c.gameObject == hit.collider.gameObject)
+                    {
+                        self = true;
+                        break;
+                    }
+                }
+                if(!self)
+                    return true;
             }
         }
         return false;

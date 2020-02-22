@@ -13,6 +13,7 @@ public class CharacterControl : MonoBehaviour
     public List<GameObject> backSpheres = new List<GameObject>();
     public List<GameObject> rightSpheres = new List<GameObject>();
     public List<GameObject> leftSpheres = new List<GameObject>();
+    public List<Collider> ragdollParts = new List<Collider>();
 
     public LedgeChecker ledgeChecker;
 
@@ -40,9 +41,38 @@ public class CharacterControl : MonoBehaviour
 
     private void Awake()
     {
+        SetRagdollParts();
         CreateAllSpheres();
-
         ledgeChecker = GetComponentInChildren<LedgeChecker>();
+    }
+
+    private void SetRagdollParts()
+    {
+        Collider[] colliders = gameObject.GetComponentsInChildren<Collider>();
+            
+        foreach(Collider c in colliders)
+        {
+            if(c.gameObject != gameObject)
+            {
+                c.isTrigger = true;
+                ragdollParts.Add(c);
+            }
+        }
+    }
+
+    public void TurnOnRagdoll()
+    {
+        RIGIDBODY.useGravity = false;
+        RIGIDBODY.velocity = Vector3.zero;
+        gameObject.GetComponent<BoxCollider>().enabled = false;
+        GetComponent<Animator>().enabled = false;
+        GetComponent<Animator>().avatar = null;
+
+        foreach (Collider c in ragdollParts)
+        {
+            c.isTrigger = false;
+            c.attachedRigidbody.velocity = Vector3.zero;
+        }
     }
 
     private void FixedUpdate()
