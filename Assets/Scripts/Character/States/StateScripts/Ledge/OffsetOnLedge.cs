@@ -12,7 +12,7 @@ public class OffsetOnLedge : StateData
         Transform originParent = anim.transform.parent;
         anim.transform.parent = charControl.ledgeChecker.grabbedLedge.transform;
         Debug.Log(charControl.ledgeChecker.grabbedLedge.offset);
-        anim.transform.localPosition = charControl.ledgeChecker.grabbedLedge.offset;
+        anim.transform.localPosition = new Vector3(anim.transform.localPosition.x, charControl.ledgeChecker.grabbedLedge.offset.y, charControl.ledgeChecker.grabbedLedge.offset.z);
         anim.transform.parent = originParent;
         anim.transform.localRotation = charControl.ledgeChecker.grabbedLedge.transform.rotation;
         charControl.RIGIDBODY.velocity = Vector3.zero;
