@@ -27,6 +27,8 @@ public class CharacterControl : MonoBehaviour
     public float gravityMultiplier = 0.0f;
     public float pullMultiplier = 0.0f;
 
+    public Vector3 airMomentum = Vector3.zero;
+
     private Rigidbody rigidbody;
     public Rigidbody RIGIDBODY
     {

@@ -57,7 +57,8 @@ public class GroundDetecter : StateData
                 RaycastHit hit;
                 if (Physics.Raycast(o.transform.position, Vector3.down, out hit, distance))
                 {
-                    return true;
+                    if(charControl.ragdollParts.Contains(hit.collider) && !Ledge.IsLedge(hit.collider.gameObject))
+                        return true;
                 }
             }
         }

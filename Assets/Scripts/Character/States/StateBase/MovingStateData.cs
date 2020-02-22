@@ -10,9 +10,20 @@ public class MovingStateData : StateData
     public float blockDistance;
     private bool self;
 
-    public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo) { }
+    [Header("Momentum")]
+    public bool useMomentum = false;
+    public float maxMometum = 0.0f;
+
+    public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo) 
+    {
+       characterState.GetCharacterControl(animator).airMomentum = Vector3.zero;
+    }
+
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo) { }
-    public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo) { }
+    public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo) 
+    {
+        characterState.GetCharacterControl(animator).airMomentum = Vector3.zero;
+    }
 
     protected float CalculateSpeed(CharacterControl charControl, AnimatorStateInfo stateInfo)
     {
@@ -50,7 +61,7 @@ public class MovingStateData : StateData
             {
                 foreach(Collider c in charControl.ragdollParts)
                 {
-                    if(c.gameObject == hit.collider.gameObject)
+                    if(c.gameObject == hit.collider.gameObject && !Ledge.IsLedge(hit.collider.gameObject))
                     {
                         self = true;
                         break;

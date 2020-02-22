@@ -28,14 +28,41 @@ public class Move : MovingStateData
         RoateToCamFacingDir(charControl);
         float curSpeed = CalculateSpeed(charControl, stateInfo);
 
-        if (charControl.isMovingForward && !CheckEdge(charControl, charControl.frontSpheres, charControl.transform.forward))
-            charControl.transform.Translate(Vector3.forward * curSpeed * Time.deltaTime);           
-        else if(charControl.isMovingBackward && !CheckEdge(charControl, charControl.backSpheres, -charControl.transform.forward))
-            charControl.transform.Translate(Vector3.back * curSpeed * Time.deltaTime);
-        if(charControl.isMovingRight && !CheckEdge(charControl, charControl.rightSpheres, charControl.transform.right))
-            charControl.transform.Translate(Vector3.right * curSpeed * Time.deltaTime);
-        else if(charControl.isMovingLeft && !CheckEdge(charControl, charControl.leftSpheres, -charControl.transform.right))
-            charControl.transform.Translate(Vector3.left * curSpeed * Time.deltaTime);
+        if (useMomentum)
+        {
+            if (charControl.isMovingForward && !CheckEdge(charControl, charControl.frontSpheres, charControl.transform.forward))
+            {
+                charControl.airMomentum.z += speedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime;
+                charControl.transform.Translate(Vector3.forward * curSpeed * Time.deltaTime);
+            }
+            else if (charControl.isMovingBackward && !CheckEdge(charControl, charControl.backSpheres, -charControl.transform.forward))
+            {
+                charControl.airMomentum.z -= speedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime;
+            }
+            if (charControl.isMovingRight && !CheckEdge(charControl, charControl.rightSpheres, charControl.transform.right))
+            {
+                charControl.airMomentum.x += speedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime;
+            }
+            else if (charControl.isMovingLeft && !CheckEdge(charControl, charControl.leftSpheres, -charControl.transform.right))
+            {
+                charControl.airMomentum.x -= speedGraph.Evaluate(stateInfo.normalizedTime) * Time.deltaTime;
+            }
+            charControl.airMomentum.x = Mathf.Clamp(charControl.airMomentum.x, -maxMometum, maxMometum);
+            charControl.airMomentum.z = Mathf.Clamp(charControl.airMomentum.z, -maxMometum, maxMometum);
+            //apply speed
+        }
+        else
+        {
+
+            if (charControl.isMovingForward && !CheckEdge(charControl, charControl.frontSpheres, charControl.transform.forward))
+                charControl.transform.Translate(Vector3.forward * curSpeed * Time.deltaTime);
+            else if (charControl.isMovingBackward && !CheckEdge(charControl, charControl.backSpheres, -charControl.transform.forward))
+                charControl.transform.Translate(Vector3.back * curSpeed * Time.deltaTime);
+            if (charControl.isMovingRight && !CheckEdge(charControl, charControl.rightSpheres, charControl.transform.right))
+                charControl.transform.Translate(Vector3.right * curSpeed * Time.deltaTime);
+            else if (charControl.isMovingLeft && !CheckEdge(charControl, charControl.leftSpheres, -charControl.transform.right))
+                charControl.transform.Translate(Vector3.left * curSpeed * Time.deltaTime);
+        }
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
