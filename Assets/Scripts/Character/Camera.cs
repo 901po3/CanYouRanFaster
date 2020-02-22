@@ -55,7 +55,8 @@ public class Camera : MonoBehaviour
         Vector3 dir = transform.position - playerPivot.transform.position;
         if (Physics.Raycast(playerPivot.transform.position, dir, out hit, distance))
         {
-            camPivot.transform.localPosition = Vector3.Lerp(camPivot.transform.localPosition, new Vector3(0, 0, -hit.distance), speed);
+            if(hit.transform.tag != "Player")
+                camPivot.transform.localPosition = Vector3.Lerp(camPivot.transform.localPosition, new Vector3(0, 0, -hit.distance), speed);
         }
         else
         {
