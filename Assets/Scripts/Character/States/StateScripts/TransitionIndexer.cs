@@ -38,7 +38,7 @@ public class TransitionIndexer : StateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-
+        //animator.SetInteger("transitionIndex", 0);
     }
 
     private bool MakeTransition(CharacterControl control)

@@ -1161,6 +1161,27 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7226704676802207749, guid: 75643f49e93f37d4a8e5ba21a362987a,
+        type: 3}
+      propertyPath: m_Avatar
+      value: 
+      objectReference: {fileID: 9000000, guid: 27452c444258cbc46a8d7293f9c4d798, type: 3}
+    - target: {fileID: 7226704676802207749, guid: 75643f49e93f37d4a8e5ba21a362987a,
+        type: 3}
+      propertyPath: m_WarningMessage
+      value: "\nBinding warning: Some generic clip(s) animate transforms that are
+        already bound by a Humanoid avatar. These transforms can only be changed
+        by Humanoid clips.\n\tTransform 'mixamorig:Hips'\n\tTransform 'mixamorig:LeftFoot'\n\tTransform
+        'mixamorig:LeftHandThumb2'\n\tTransform 'mixamorig:LeftHandIndex1'\n\tTransform
+        'mixamorig:LeftHandPinky2'\n\tTransform 'mixamorig:RightHandRing2'\n\tTransform
+        'mixamorig:Spine1'\n\tTransform 'mixamorig:LeftToeBase'\n\tTransform 'mixamorig:LeftHandThumb3'\n\tTransform
+        'mixamorig:RightArm'\n\tand more ...\n\tFrom animation clip 'RunForward'\n\tFrom
+        animation clip 'RightStrafe'\n\tFrom animation clip 'LeftStrafe'\n\tFrom
+        animation clip 'RunningBackward'\n\tFrom animation clip 'Run Backward Right'\n\tFrom
+        animation clip 'Run Backward Left'\n\tFrom animation clip 'Idle_01'\n\tFrom
+        animation clip 'Idle_01'\n\tFrom animation clip 'Jumpin_Normal_Prep'\n\tFrom
+        animation clip 'Jumpin_Normal'\n\tand more ..."
+      objectReference: {fileID: 0}
     - target: {fileID: 7226704677016630484, guid: 75643f49e93f37d4a8e5ba21a362987a,
         type: 3}
       propertyPath: m_LocalPosition.x
