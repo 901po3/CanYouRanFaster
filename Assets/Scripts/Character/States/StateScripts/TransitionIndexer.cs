@@ -8,7 +8,7 @@ public class TransitionIndexer : StateData
     public enum TransitionConditionType
     {
         UP,
-        DOWNN,
+        DOWN,
         LEFT,
         RIGHT,
         JUMP,
@@ -53,7 +53,7 @@ public class TransitionIndexer : StateData
                         return false;
                     }
                     break;
-                case TransitionConditionType.DOWNN:
+                case TransitionConditionType.DOWN:
                     if (!control.isMovingBackward)
                     {
                         return false;
