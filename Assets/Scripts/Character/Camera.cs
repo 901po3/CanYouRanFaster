@@ -20,6 +20,10 @@ public class Camera : MonoBehaviour
     [SerializeField] float zoomSpeed;
     [SerializeField] float distance;
 
+    float originYHeight;
+    float fallingTimer = 0.0f;
+    bool fallingCam = false;
+
     private void OnEnable()
     { 
         cameraInputAction.Enable();
@@ -41,6 +45,8 @@ public class Camera : MonoBehaviour
         playerPivot = GameObject.Find("playerPivot");
         cameraMan = GameObject.Find("cameraMan");
         camPivot = GameObject.Find("camPivot");
+
+        originYHeight = cameraMan.transform.eulerAngles.x;
     }
 
     private void Update()
@@ -62,7 +68,7 @@ public class Camera : MonoBehaviour
         {
             camPivot.transform.localPosition = Vector3.Lerp(dir, new Vector3(0, 0, -distance), 10);
         }
-        if(cameraAxis == Vector2.zero)
+        if(cameraAxis == Vector2.zero && (Input.GetAxis("Mouse Y") == 0 && Input.GetAxis("Mouse X") == 0))
         {
             transform.position = new Vector3(camPivot.transform.position.x, transform.position.y, camPivot.transform.position.z);
             transform.position = Vector3.Lerp(transform.position, new Vector3(transform.position.x, camPivot.transform.position.y, transform.position.z), speed * Time.deltaTime);
@@ -77,19 +83,50 @@ public class Camera : MonoBehaviour
     {
         cameraMan.transform.position = playerPivot.transform.position;
         Vector3 angle = cameraMan.transform.eulerAngles;
+
         if (Input.GetMouseButton(1))
         {
             angle.y += Input.GetAxis("Mouse X") * Time.deltaTime * rotSpeed;
             angle.x += Input.GetAxis("Mouse Y") * Time.deltaTime * rotSpeed;
+            angle.x = Mathf.Clamp(angle.x, minHeight, maxHeight);
+            originYHeight = angle.x;
+            fallingCam = false;
         }
-        else
+        else if(!Input.GetMouseButton(1) && cameraAxis != Vector2.zero)
         {
-            angle.y += cameraAxis.x * Time.deltaTime * rotSpeed;
             angle.x += cameraAxis.y * Time.deltaTime * rotSpeed;
+            angle.y += cameraAxis.x * Time.deltaTime * rotSpeed;
+            angle.x = Mathf.Clamp(angle.x, minHeight, maxHeight);
+            originYHeight = angle.x;
+            fallingCam = false;
         }
-        angle.x = Mathf.Clamp(angle.x, minHeight, maxHeight);
+        else if(cameraAxis.y == 0 && Input.GetAxis("Mouse Y") == 0)
+        {
+            if (playerPivot.GetComponentInParent<CharacterControl>().RIGIDBODY.velocity.y < -0.1f)
+            {
+                if(!fallingCam)
+                    fallingTimer += Time.deltaTime;
+                if(fallingTimer >= 0.5f)
+                    fallingCam = true;        
+                
+                if(fallingCam)
+                {
+                    angle.x += Time.deltaTime * rotSpeed / 2;
+                    angle.x = Mathf.Clamp(angle.x, minHeight, maxHeight);
+                    fallingTimer = 0.0f;
+                }
+            }
+            else if(playerPivot.GetComponentInParent<CharacterControl>().RIGIDBODY.velocity.y == 0)
+            {
+                angle.x -= Time.deltaTime * rotSpeed / 2;
+                angle.x = Mathf.Clamp(angle.x, originYHeight, maxHeight);
+                fallingCam = false;
+            }
+        }
         Quaternion rot = Quaternion.Euler(angle);
         cameraMan.transform.rotation = Quaternion.Slerp(cameraMan.transform.rotation, rot, rotSpeed * Time.deltaTime);
         transform.rotation = cameraMan.transform.rotation;
+
+
     }
 }
