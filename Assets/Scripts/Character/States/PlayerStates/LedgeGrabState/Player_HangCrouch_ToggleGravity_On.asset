@@ -9,8 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 346b086e57f71754dacad3fc9a87236a, type: 3}
-  m_Name: General_GroundDetecter
+  m_Script: {fileID: 11500000, guid: 907a635f05015e54e93188e934221fee, type: 3}
+  m_Name: Player_HangCrouch_ToggleGravity_On
   m_EditorClassIdentifier: 
-  checkTime: 0.2
-  distance: 0.075
+  on: 1
+  onStart: 1
+  onEnd: 0

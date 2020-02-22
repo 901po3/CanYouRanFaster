@@ -20,8 +20,5 @@ public class TeleportOnLedge : StateData
         Vector3 endPosition = charControl.ledgeChecker.grabbedLedge.transform.position + charControl.ledgeChecker.grabbedLedge.endPosition;
         charControl.transform.position = endPosition;
         charControl.transform.position += charControl.transform.forward * 0.3f;
-        charControl.RIGIDBODY.useGravity = true;
-        charControl.ledgeChecker.grabbedLedge = null;
-        charControl.ledgeChecker.isGrabbingLedge = false;
     }
 }

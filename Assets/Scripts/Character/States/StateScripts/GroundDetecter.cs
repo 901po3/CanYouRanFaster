@@ -43,7 +43,7 @@ public class GroundDetecter : StateData
         if(charControl.RIGIDBODY.velocity.y <= 0.0f && charControl.RIGIDBODY.velocity.y > -0.01f)
         {
             groundTimer += Time.deltaTime;
-            if(groundTimer > 0.5f)
+            if(groundTimer > 0.15f)
             {
                 return true;
             }

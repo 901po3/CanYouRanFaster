@@ -34,6 +34,6 @@ public class ToggleBoxCollider : StateData
 
     private void ToggleBocCol(CharacterControl control)
     {
-        control.GetComponent<BoxCollider>().enabled = false;
+        control.GetComponent<BoxCollider>().enabled = on;
     }
 }
