@@ -17,7 +17,7 @@ public class TeleportOnLedge : StateData
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         CharacterControl charControl = characterState.GetCharacterControl(animator);
-        Vector3 endPosition = charControl.ledgeChecker.grabbedLedge.transform.position + charControl.ledgeChecker.grabbedLedge.endPosition;
+        Vector3 endPosition = charControl.ledgeChecker.transform.position + charControl.ledgeChecker.grabbedLedge.endPosition;
         charControl.transform.position = endPosition;
         charControl.transform.position += charControl.transform.forward * 0.3f;
     }
