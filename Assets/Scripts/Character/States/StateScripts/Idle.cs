@@ -8,6 +8,7 @@ public class Idle : StateData
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         animator.SetBool("isJumping", false);
+        animator.SetBool("isRunning", false);
     }
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

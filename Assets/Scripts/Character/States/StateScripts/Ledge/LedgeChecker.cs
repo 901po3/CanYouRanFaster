@@ -9,6 +9,12 @@ public class LedgeChecker : MonoBehaviour
     
     Ledge ledge = null;
 
+    private void Awake()
+    {
+        BoxCollider box = GetComponent<BoxCollider>();
+
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         ledge = other.GetComponent<Ledge>();
@@ -28,5 +34,4 @@ public class LedgeChecker : MonoBehaviour
             isGrabbingLedge = false;
         }
     }
-
 }

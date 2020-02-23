@@ -49,7 +49,8 @@ public class Move : MovingStateData
             }
             charControl.airMomentum.x = Mathf.Clamp(charControl.airMomentum.x, -maxMometum, maxMometum);
             charControl.airMomentum.z = Mathf.Clamp(charControl.airMomentum.z, -maxMometum, maxMometum);
-            //apply speed
+
+            charControl.transform.Translate(charControl.airMomentum * curSpeed * Time.deltaTime);
         }
         else
         {
@@ -67,6 +68,6 @@ public class Move : MovingStateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-
+        characterState.GetCharacterControl(animator).airMomentum = Vector3.zero;
     }
 }

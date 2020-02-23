@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b7db5ec5dd85b1b49ac7fa01101010f6, type: 3}
-  m_Name: Player_Hang_Drop_TransitionIndexer
+  m_Name: Player_HangMoveRight_TransitionIdexer
   m_EditorClassIdentifier: 
-  index: 2
-  transitionConditions: 0100000004000000
+  index: 3
+  transitionConditions: 03000000
