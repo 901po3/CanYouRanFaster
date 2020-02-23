@@ -10,7 +10,7 @@ public class ManualInput : MonoBehaviour
     #region Input Actions
     private PlayerInputAction playerInputAction;
     private Vector2 playerAxis;
-    private bool jumpInput;
+    public bool jumpInput;
     #endregion
 
     private void Awake()

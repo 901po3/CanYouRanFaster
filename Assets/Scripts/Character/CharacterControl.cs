@@ -62,6 +62,15 @@ public class CharacterControl : MonoBehaviour
         }
     }
 
+    IEnumerator DeathTest()
+    {
+        yield return new WaitForSeconds(5.0f);
+        RIGIDBODY.AddForce(Vector3.up * 200);
+        yield return new WaitForSeconds(0.5f);
+        TurnOnRagdoll();
+
+    }
+
     public void TurnOnRagdoll()
     {
         RIGIDBODY.useGravity = false;

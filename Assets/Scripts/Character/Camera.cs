@@ -100,7 +100,7 @@ public class Camera : MonoBehaviour
             originYHeight = angle.x;
             fallingCam = false;
         }
-        else if(cameraAxis.y == 0 && Input.GetAxis("Mouse Y") == 0)
+        else if(cameraAxis.y == 0 && Input.GetAxis("Mouse Y") == 0 && !playerPivot.GetComponentInParent<ManualInput>().jumpInput)
         {
             if (playerPivot.GetComponentInParent<CharacterControl>().RIGIDBODY.velocity.y < -0.1f)
             {
