@@ -78,7 +78,8 @@ public class TransitionIndexer : StateData
                     }
                     break;
                 case TransitionConditionType.GRABBING_LEDGE:
-                    if(!control.ledgeChecker.isGrabbingLedge)
+                    if(!control.ledgeCheckers[0].isGrabbingLedge || !control.ledgeCheckers[1].isGrabbingLedge ||
+                        control.ledgeCheckers[0].grabbedLedge != control.ledgeCheckers[1].grabbedLedge)
                     {
                         return false;
                     }

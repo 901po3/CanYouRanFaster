@@ -15,7 +15,7 @@ public class CharacterControl : MonoBehaviour
     public List<GameObject> leftSpheres = new List<GameObject>();
     public List<Collider> ragdollParts = new List<Collider>();
 
-    public LedgeChecker ledgeChecker;
+    public List<LedgeChecker> ledgeCheckers = new List<LedgeChecker>();
 
     public bool isMoving = false;
     public bool isMovingForward = false;
@@ -45,7 +45,6 @@ public class CharacterControl : MonoBehaviour
     {
         SetRagdollParts();
         CreateAllSpheres();
-        ledgeChecker = GetComponentInChildren<LedgeChecker>();
     }
 
     private void SetRagdollParts()

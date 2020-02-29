@@ -11,7 +11,7 @@ public class LedgeChecker : MonoBehaviour
 
     private void Awake()
     {
-        BoxCollider box = GetComponent<BoxCollider>();
+        Collider box = GetComponent<Collider>();
 
     }
 

@@ -43,7 +43,7 @@ public class MovingStateData : StateData
 
     protected void RoateToCamFacingDir(CharacterControl charControl)
     {
-        if (charControl.ledgeChecker.isGrabbingLedge) return;
+        if (charControl.ledgeCheckers[0].isGrabbingLedge || charControl.ledgeCheckers[1].isGrabbingLedge) return;
         Vector3 dir = (charControl.transform.position -
             new Vector3(charControl.camera.transform.position.x, charControl.transform.position.y, charControl.camera.transform.position.z)).normalized;
         Quaternion qut = Quaternion.LookRotation(dir);
