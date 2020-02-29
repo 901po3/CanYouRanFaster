@@ -20,7 +20,11 @@ public class ToggleGravity : StateData
 
     public override void UpdateAbility(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-
+        if(!on)
+        {
+            CharacterControl charControl = characterState.GetCharacterControl(animator);
+            charControl.RIGIDBODY.velocity = Vector3.zero;
+        }
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
