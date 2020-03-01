@@ -46,48 +46,48 @@ public class GroundDetecter : StateData
     }
 
     private bool IsGrounded(CharacterControl charControl)
-    {       
-        if(charControl.RIGIDBODY.velocity.y <= 0.0f && charControl.RIGIDBODY.velocity.y > -0.01f)
-        {
-            groundTimer += Time.deltaTime;
-            if(groundTimer > 0.15f)
-            {
-                return true;
-            }
-        }
+    {
+        return charControl.GetComponentInChildren<BottomChecker>().isGround;
+        //if(charControl.RIGIDBODY.velocity.y <= 0.0f && charControl.RIGIDBODY.velocity.y > -0.01f)
+        //{
+        //    groundTimer += Time.deltaTime;
+        //    if(groundTimer > 0.15f)
+        //    {
+        //        return true;
+        //    }
+        //}
 
-        if(charControl.RIGIDBODY.velocity.y < 0.0f)
-        {
-            foreach (GameObject o in charControl.bottomSpheres)
-            {
-                Debug.DrawRay(o.transform.position, Vector3.down * distance, Color.yellow);
-                RaycastHit hit;
-                if (Physics.Raycast(o.transform.position, Vector3.down, out hit, distance))
-                {
-                    if(charControl.ragdollParts.Contains(hit.collider) && !Ledge.IsLedge(hit.collider.gameObject))
-                        return true;
-                }
-            }
-        }
-
-        return false;
+        //if(charControl.RIGIDBODY.velocity.y <= 0.0f)
+        //{
+        //    foreach (GameObject o in charControl.bottomSpheres)
+        //    {
+        //        Debug.DrawRay(o.transform.position, Vector3.down * distance, Color.yellow);
+        //        RaycastHit hit;
+        //        if (Physics.Raycast(o.transform.position, Vector3.down, out hit, distance))
+        //        {
+        //            if(charControl.ragdollParts.Contains(hit.collider))
+        //                return true;
+        //        }
+        //    }
+        //}
     }
 
     private void PlayerOnLedge(CharacterControl charControl)
     {
-        charControl.bottomLedge = null;
-        foreach (GameObject o in charControl.bottomSpheres)
-        {
-            Debug.DrawRay(o.transform.position, Vector3.down * distance, Color.yellow);
-            RaycastHit hit;
-            if (Physics.Raycast(o.transform.position, Vector3.down, out hit, distance))
-            {
-                if (Ledge.IsLedge(hit.collider.gameObject))
-                {
-                    charControl.bottomLedge = hit.collider.gameObject.GetComponent<Ledge>();
-                    break;
-                }
-            }
-        }
+        //charControl.bottomLedge = null;
+        //foreach (GameObject o in charControl.bottomSpheres)
+        //{
+        //    Debug.DrawRay(o.transform.position, Vector3.down * distance, Color.yellow);
+        //    RaycastHit hit;
+        //    if (Physics.Raycast(o.transform.position, Vector3.down, out hit, distance))
+        //    {
+        //        if (Ledge.IsLedge(hit.collider.gameObject))
+        //        {
+        //            charControl.bottomLedge = hit.collider.gameObject.GetComponent<Ledge>();
+        //            break;
+        //        }
+        //    }
+        //}
+        charControl.bottomLedge = charControl.GetComponentInChildren<BottomChecker>().ledge;
     }
 }

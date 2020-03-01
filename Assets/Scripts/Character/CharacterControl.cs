@@ -129,8 +129,9 @@ public class CharacterControl : MonoBehaviour
         GameObject bottomLeft = CreateEdgeSphere(new Vector3(left, bottom, transform.position.z));
         GameObject topLeft = CreateEdgeSphere(new Vector3(left, top, transform.position.z));
 
-        float horSeg = (bottomFront.transform.position - bottomBack.transform.position).magnitude / 5.0f;
-        CreateMiddleSpheres(bottomBack, transform.forward, horSeg, 5, bottomSpheres);
+        //float horSeg = (bottomFront.transform.position - bottomBack.transform.position).magnitude / 5.0f;
+        //CreateMiddleSpheres(bottomBack, transform.forward, horSeg, 5, bottomSpheres);
+        //CreateMiddleSpheres(bottomLeft, transform.right, horSeg, 5, bottomSpheres);
 
         float verSeg = (bottomFront.transform.position - topFront.transform.position).magnitude / 10.0f;
         CreateMiddleSpheres(bottomFront, transform.up, verSeg, 10, frontSpheres);
