@@ -11,9 +11,13 @@ public class Ledge : MonoBehaviour
     public Vector3 ledgeLeftEdge;
     public Vector3 ledgeRightEdge;
     public GameObject leftLedge;
-    public GameObject righeLedge;
+    public GameObject rightLedge;
     private float sideCheckerDis = 0.1f;
     private void Start()
+    {
+    }
+
+    private void Update()
     {
         RaycastHit hit;
         ledgeLeftEdge = transform.position + (-transform.right * getWorldScaleOfX(transform) / 2);
@@ -34,20 +38,17 @@ public class Ledge : MonoBehaviour
         {
             if (hit.collider != gameObject && hit.transform.tag == "Ledge")
             {
-                righeLedge = hit.transform.gameObject;
+                rightLedge = hit.transform.gameObject;
             }
             else
             {
-                righeLedge = null;
+                rightLedge = null;
             }
         }
-    }
 
-    //private void Update()
-    //{
-    //    Debug.DrawRay(ledgeLeftEdge, -transform.right * sideCheckerDis);
-    //    Debug.DrawRay(ledgeRightEdge, transform.right * sideCheckerDis);
-    //}
+        Debug.DrawRay(ledgeLeftEdge, -transform.right * sideCheckerDis);
+        Debug.DrawRay(ledgeRightEdge, transform.right * sideCheckerDis);
+    }
 
     public static bool IsLedge(GameObject obj)
     {

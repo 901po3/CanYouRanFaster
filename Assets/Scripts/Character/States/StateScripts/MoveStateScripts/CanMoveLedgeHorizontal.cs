@@ -37,18 +37,38 @@ public class CanMoveLedgeHorizontal : MovingStateData
         {
             Vector3 leftHandEdge = (-charControl.ledgeCheckers[0].transform.right * getWorldScaleOfX(charControl.ledgeCheckers[0].transform) / 2) + charControl.ledgeCheckers[0].transform.position;
             leftHandEdge += -charControl.transform.right * curSpeed * Time.deltaTime;
-            if (Vector3.Distance(leftHandEdge, charControl.ledgeCheckers[0].grabbedLedge.ledgeLeftEdge) > 0.275f)
+            if (charControl.ledgeCheckers[0].grabbedLedge.leftLedge == null)
             {
-                return true;
+                if (Vector3.Distance(leftHandEdge, charControl.ledgeCheckers[0].grabbedLedge.ledgeLeftEdge) > 0.275f)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (Vector3.Distance(leftHandEdge, charControl.ledgeCheckers[0].grabbedLedge.leftLedge.GetComponent<Ledge>().ledgeLeftEdge) > 0.275f)
+                {
+                    return true;
+                }
             }
         }
         else if (charControl.isMovingRight)
         {
             Vector3 rightHandEdge = (charControl.ledgeCheckers[1].transform.right * getWorldScaleOfX(charControl.ledgeCheckers[1].transform) / 2) + charControl.ledgeCheckers[1].transform.position;
             rightHandEdge += charControl.transform.right * curSpeed * Time.deltaTime;
-            if (Vector3.Distance(rightHandEdge, charControl.ledgeCheckers[0].grabbedLedge.ledgeRightEdge) > 0.275f)
+            if (charControl.ledgeCheckers[0].grabbedLedge.rightLedge == null)
             {
-                return true;
+                if (Vector3.Distance(rightHandEdge, charControl.ledgeCheckers[0].grabbedLedge.ledgeRightEdge) > 0.275f)
+                {
+                    return true;
+                }
+            }
+            else
+            {
+                if (Vector3.Distance(rightHandEdge, charControl.ledgeCheckers[0].grabbedLedge.rightLedge.GetComponent<Ledge>().ledgeRightEdge) > 0.275f)
+                {
+                    return true;
+                }
             }
         }
         return false;

@@ -37,32 +37,67 @@ public class LedgeMoveHorizontal : MovingStateData
         if (charControl.isMovingLeft)
         {
             Vector3 leftHandEdge = (-charControl.ledgeCheckers[0].transform.right * getWorldScaleOfX(charControl.ledgeCheckers[0].transform) / 2) + charControl.ledgeCheckers[0].transform.position;
-            Vector3 ledgeLeftEdge = charControl.ledgeCheckers[0].grabbedLedge.ledgeLeftEdge;
-            Debug.DrawRay(leftHandEdge, Vector3.up * 10, Color.yellow);
-            Debug.DrawRay(ledgeLeftEdge, Vector3.up * 10, Color.yellow);
-            if (Vector3.Distance(leftHandEdge, ledgeLeftEdge) > 0.25f)
+            if (charControl.ledgeCheckers[0].grabbedLedge.leftLedge == null)
             {
-                charControl.transform.Translate(Vector3.left * curSpeed * Time.deltaTime);
+                Vector3 ledgeLeftEdge = charControl.ledgeCheckers[0].grabbedLedge.ledgeLeftEdge;
+                Debug.DrawRay(leftHandEdge, Vector3.up * 10, Color.yellow);
+                Debug.DrawRay(ledgeLeftEdge, Vector3.up * 10, Color.yellow);
+                if (Vector3.Distance(leftHandEdge, ledgeLeftEdge) > 0.25f)
+                {
+                    charControl.transform.Translate(Vector3.left * curSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    animator.SetBool("isLedgeHorizontalMove", false);
+                }
             }
             else
             {
-                animator.SetBool("isLedgeHorizontalMove", false);
-            }
+                Vector3 ledgeLeftEdge = charControl.ledgeCheckers[0].grabbedLedge.leftLedge.GetComponent<Ledge>().ledgeLeftEdge;
+                Debug.DrawRay(leftHandEdge, Vector3.up * 10, Color.yellow);
+                Debug.DrawRay(ledgeLeftEdge, Vector3.up * 10, Color.yellow);
+                if (Vector3.Distance(leftHandEdge, ledgeLeftEdge) > 0.25f)
+                {
+                    charControl.transform.Translate(Vector3.left * curSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    animator.SetBool("isLedgeHorizontalMove", false);
+                }
+            }            
         }
         else if(charControl.isMovingRight)
         {
             Vector3 rightHandEdge = (charControl.ledgeCheckers[1].transform.right * getWorldScaleOfX(charControl.ledgeCheckers[1].transform) / 2) + charControl.ledgeCheckers[1].transform.position;
-            Vector3 ledgeRightEdge = charControl.ledgeCheckers[0].grabbedLedge.ledgeRightEdge;
-            Debug.DrawRay(rightHandEdge, Vector3.up * 10);
-            Debug.DrawRay(ledgeRightEdge, Vector3.up * 10);
-            rightHandEdge += charControl.transform.right * curSpeed * Time.deltaTime;
-            if (Vector3.Distance(rightHandEdge, ledgeRightEdge) > 0.25f)
+            if (charControl.ledgeCheckers[0].grabbedLedge.rightLedge == null)
             {
-                charControl.transform.Translate(Vector3.right * curSpeed * Time.deltaTime);
+                Vector3 ledgeRightEdge = charControl.ledgeCheckers[0].grabbedLedge.ledgeRightEdge;
+                Debug.DrawRay(rightHandEdge, Vector3.up * 10);
+                Debug.DrawRay(ledgeRightEdge, Vector3.up * 10);
+                rightHandEdge += charControl.transform.right * curSpeed * Time.deltaTime;
+                if (Vector3.Distance(rightHandEdge, ledgeRightEdge) > 0.25f)
+                {
+                    charControl.transform.Translate(Vector3.right * curSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    animator.SetBool("isLedgeHorizontalMove", false);
+                }
             }
             else
             {
-                animator.SetBool("isLedgeHorizontalMove", false);
+                Vector3 ledgeRightEdge = charControl.ledgeCheckers[0].grabbedLedge.rightLedge.GetComponent<Ledge>().ledgeRightEdge;
+                Debug.DrawRay(rightHandEdge, Vector3.up * 10);
+                Debug.DrawRay(ledgeRightEdge, Vector3.up * 10);
+                rightHandEdge += charControl.transform.right * curSpeed * Time.deltaTime;
+                if (Vector3.Distance(rightHandEdge, ledgeRightEdge) > 0.25f)
+                {
+                    charControl.transform.Translate(Vector3.right * curSpeed * Time.deltaTime);
+                }
+                else
+                {
+                    animator.SetBool("isLedgeHorizontalMove", false);
+                }
             }
         }
     }

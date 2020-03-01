@@ -14,11 +14,10 @@ public class LedgeChecker : MonoBehaviour
         Collider box = GetComponent<Collider>();
 
     }
-
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
         ledge = other.GetComponent<Ledge>();
-        if(ledge != null)
+        if (ledge != null)
         {
             grabbedLedge = ledge;
             isGrabbingLedge = true;
