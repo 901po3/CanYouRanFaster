@@ -13,6 +13,9 @@ public class Camera : MonoBehaviour
     private GameObject cameraMan;
     private GameObject camPivot;
 
+    public bool goDown = false;
+    public bool goUp = false;
+
     [SerializeField] float speed;
     [SerializeField] float rotSpeed;
     [SerializeField] float minHeight;

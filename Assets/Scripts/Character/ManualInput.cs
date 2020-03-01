@@ -11,6 +11,7 @@ public class ManualInput : MonoBehaviour
     private PlayerInputAction playerInputAction;
     private Vector2 playerAxis;
     public bool jumpInput;
+    public bool dropToHangInput;
     #endregion
 
     private void Awake()
@@ -21,6 +22,8 @@ public class ManualInput : MonoBehaviour
         playerInputAction.PlayerContols.Move.performed += ctx => playerAxis = ctx.ReadValue<Vector2>();
         playerInputAction.PlayerContols.Jump.performed += ctx => jumpInput = true;
         playerInputAction.PlayerContols.Jump.canceled += ctx => jumpInput = false;
+        playerInputAction.PlayerContols.DropToHang.performed += ctx => dropToHangInput = true;
+        playerInputAction.PlayerContols.DropToHang.canceled += ctx => dropToHangInput = false;
     }
 
     private void Update()
@@ -36,6 +39,7 @@ public class ManualInput : MonoBehaviour
         charControl.isMovingBackward = (playerAxis.y < 0) ? true : false;
         charControl.isMovingRight = (playerAxis.x > 0) ? true : false;
         charControl.isMovingLeft = (playerAxis.x < 0) ? true : false;
+        charControl.isDropToHang = (charControl.bottomLedge != null && dropToHangInput) ? true : false;
 
         animator.SetFloat("velX", Input.GetAxis("Horizontal"));
         animator.SetFloat("velZ", Input.GetAxis("Vertical"));

@@ -13,7 +13,8 @@ public class TransitionIndexer : StateData
         RIGHT,
         JUMP,
         GRABBING_LEDGE,
-        CLIMB_LEDGE
+        CLIMB_LEDGE,
+        DROP_TO_LEDGE
     }
 
     public int index;
@@ -87,6 +88,12 @@ public class TransitionIndexer : StateData
                 case TransitionConditionType.CLIMB_LEDGE:
                     if(!control.ledgeCheckers[0].grabbedLedge.canClimbUp ||
                         control.ledgeCheckers[0].grabbedLedge != control.ledgeCheckers[1].grabbedLedge)
+                    {
+                        return false;
+                    }
+                    break;
+                case TransitionConditionType.DROP_TO_LEDGE:
+                    if(!control.isDropToHang)
                     {
                         return false;
                     }

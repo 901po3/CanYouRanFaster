@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 346b086e57f71754dacad3fc9a87236a, type: 3}
-  m_Name: General_GroundDetecter
+  m_Name: Falling_GroundDetecter
   m_EditorClassIdentifier: 
   checkTime: 0.1
   distance: 0.05
-  checkLedgeOnFloor: 1
+  checkLedgeOnFloor: 0

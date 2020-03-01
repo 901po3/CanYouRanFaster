@@ -16,6 +16,7 @@ public class CharacterControl : MonoBehaviour
     public List<Collider> ragdollParts = new List<Collider>();
 
     public List<LedgeChecker> ledgeCheckers = new List<LedgeChecker>();
+    public Ledge bottomLedge = null;
 
     public bool isMoving = false;
     public bool isMovingForward = false;
@@ -23,6 +24,7 @@ public class CharacterControl : MonoBehaviour
     public bool isMovingRight = false;
     public bool isMovingLeft = false;
     public bool isJumping = false;
+    public bool isDropToHang = false;
 
     public float gravityMultiplier = 0.0f;
     public float pullMultiplier = 0.0f;

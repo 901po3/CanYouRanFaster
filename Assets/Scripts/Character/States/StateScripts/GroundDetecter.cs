@@ -8,6 +8,8 @@ public class GroundDetecter : StateData
     [Range(0.01f, 1.0f)]
     public float checkTime;
     public float distance;
+    
+    public bool checkLedgeOnFloor;
 
     private float groundTimer = 0.0f;
 
@@ -30,6 +32,11 @@ public class GroundDetecter : StateData
             {
                 animator.SetBool("grounded", false);
             }
+        }
+
+        if(checkLedgeOnFloor)
+        {
+            PlayerOnLedge(charControl);
         }
     }
 
@@ -64,5 +71,23 @@ public class GroundDetecter : StateData
         }
 
         return false;
+    }
+
+    private void PlayerOnLedge(CharacterControl charControl)
+    {
+        charControl.bottomLedge = null;
+        foreach (GameObject o in charControl.bottomSpheres)
+        {
+            Debug.DrawRay(o.transform.position, Vector3.down * distance, Color.yellow);
+            RaycastHit hit;
+            if (Physics.Raycast(o.transform.position, Vector3.down, out hit, distance))
+            {
+                if (Ledge.IsLedge(hit.collider.gameObject))
+                {
+                    charControl.bottomLedge = hit.collider.gameObject.GetComponent<Ledge>();
+                    break;
+                }
+            }
+        }
     }
 }

@@ -33,6 +33,14 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""DropToHang"",
+                    ""type"": ""Button"",
+                    ""id"": ""3268e309-529c-4bc0-8508-27f5c96f3078"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -167,6 +175,28 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""615d53e3-9bf8-410c-aef8-12253a12a011"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard"",
+                    ""action"": ""DropToHang"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""507931b6-c2cf-4327-92a1-46d7507781bf"",
+                    ""path"": ""<Gamepad>/leftStickPress"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Gamepad"",
+                    ""action"": ""DropToHang"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -200,6 +230,7 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
         m_PlayerContols = asset.FindActionMap("PlayerContols", throwIfNotFound: true);
         m_PlayerContols_Move = m_PlayerContols.FindAction("Move", throwIfNotFound: true);
         m_PlayerContols_Jump = m_PlayerContols.FindAction("Jump", throwIfNotFound: true);
+        m_PlayerContols_DropToHang = m_PlayerContols.FindAction("DropToHang", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -251,12 +282,14 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     private IPlayerContolsActions m_PlayerContolsActionsCallbackInterface;
     private readonly InputAction m_PlayerContols_Move;
     private readonly InputAction m_PlayerContols_Jump;
+    private readonly InputAction m_PlayerContols_DropToHang;
     public struct PlayerContolsActions
     {
         private @PlayerInputAction m_Wrapper;
         public PlayerContolsActions(@PlayerInputAction wrapper) { m_Wrapper = wrapper; }
         public InputAction @Move => m_Wrapper.m_PlayerContols_Move;
         public InputAction @Jump => m_Wrapper.m_PlayerContols_Jump;
+        public InputAction @DropToHang => m_Wrapper.m_PlayerContols_DropToHang;
         public InputActionMap Get() { return m_Wrapper.m_PlayerContols; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -272,6 +305,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_PlayerContolsActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_PlayerContolsActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_PlayerContolsActionsCallbackInterface.OnJump;
+                @DropToHang.started -= m_Wrapper.m_PlayerContolsActionsCallbackInterface.OnDropToHang;
+                @DropToHang.performed -= m_Wrapper.m_PlayerContolsActionsCallbackInterface.OnDropToHang;
+                @DropToHang.canceled -= m_Wrapper.m_PlayerContolsActionsCallbackInterface.OnDropToHang;
             }
             m_Wrapper.m_PlayerContolsActionsCallbackInterface = instance;
             if (instance != null)
@@ -282,6 +318,9 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @DropToHang.started += instance.OnDropToHang;
+                @DropToHang.performed += instance.OnDropToHang;
+                @DropToHang.canceled += instance.OnDropToHang;
             }
         }
     }
@@ -308,5 +347,6 @@ public class @PlayerInputAction : IInputActionCollection, IDisposable
     {
         void OnMove(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnDropToHang(InputAction.CallbackContext context);
     }
 }

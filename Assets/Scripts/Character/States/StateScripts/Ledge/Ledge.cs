@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ledge : MonoBehaviour
 {
+    public Vector3 DropToHangOffset;
+    public Vector3 DropToHangEndOffset;
     public Vector3 offset;
     public Vector3 endPosition;
     public bool canClimbUp;
