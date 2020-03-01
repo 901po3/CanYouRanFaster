@@ -47,29 +47,33 @@ public class GroundDetecter : StateData
 
     private bool IsGrounded(CharacterControl charControl)
     {
-        return charControl.GetComponentInChildren<BottomChecker>().isGround;
-        //if(charControl.RIGIDBODY.velocity.y <= 0.0f && charControl.RIGIDBODY.velocity.y > -0.01f)
-        //{
-        //    groundTimer += Time.deltaTime;
-        //    if(groundTimer > 0.15f)
-        //    {
-        //        return true;
-        //    }
-        //}
+        charControl.isOnGround = false;
+        if (charControl.GetComponentInChildren<BottomChecker>().isGround)
+            charControl.isOnGround = true;
 
-        //if(charControl.RIGIDBODY.velocity.y <= 0.0f)
-        //{
-        //    foreach (GameObject o in charControl.bottomSpheres)
-        //    {
-        //        Debug.DrawRay(o.transform.position, Vector3.down * distance, Color.yellow);
-        //        RaycastHit hit;
-        //        if (Physics.Raycast(o.transform.position, Vector3.down, out hit, distance))
-        //        {
-        //            if(charControl.ragdollParts.Contains(hit.collider))
-        //                return true;
-        //        }
-        //    }
-        //}
+        if (charControl.RIGIDBODY.velocity.y <= 0.0f && charControl.RIGIDBODY.velocity.y > -0.01f)
+        {
+            groundTimer += Time.deltaTime;
+            if(groundTimer > 0.15f)
+            {
+                charControl.isOnGround = true;
+            }
+        }
+
+        if(charControl.RIGIDBODY.velocity.y <= 0.0f)
+        {
+            foreach (GameObject o in charControl.bottomSpheres)
+            {
+                Debug.DrawRay(o.transform.position, Vector3.down * distance, Color.yellow);
+                RaycastHit hit;
+                if (Physics.Raycast(o.transform.position, Vector3.down, out hit, distance))
+                {
+                    if(charControl.ragdollParts.Contains(hit.collider))
+                        charControl.isOnGround = true;
+                }
+            }
+        }
+        return charControl.isOnGround;
     }
 
     private void PlayerOnLedge(CharacterControl charControl)

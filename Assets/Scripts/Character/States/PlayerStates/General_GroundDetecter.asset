@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: General_GroundDetecter
   m_EditorClassIdentifier: 
   checkTime: 0.1
-  distance: 0.075
+  distance: 0.02
   checkLedgeOnFloor: 1

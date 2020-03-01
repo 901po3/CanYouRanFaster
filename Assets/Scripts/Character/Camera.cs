@@ -166,6 +166,8 @@ public class Camera : MonoBehaviour
                 fallingCam = false;
             }
         }
+        if (playerPivot.GetComponentInParent<CharacterControl>().isOnGround)
+            fallingTimer = 0.0f;
         Quaternion rot = Quaternion.Euler(angle);
         cameraMan.transform.rotation = Quaternion.Slerp(cameraMan.transform.rotation, rot, rotSpeed * Time.deltaTime);
         transform.rotation = cameraMan.transform.rotation;
