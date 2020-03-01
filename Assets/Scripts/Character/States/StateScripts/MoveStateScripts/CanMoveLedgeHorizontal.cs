@@ -36,9 +36,8 @@ public class CanMoveLedgeHorizontal : MovingStateData
         if (charControl.isMovingLeft)
         {
             Vector3 leftHandEdge = (-charControl.ledgeCheckers[0].transform.right * getWorldScaleOfX(charControl.ledgeCheckers[0].transform) / 2) + charControl.ledgeCheckers[0].transform.position;
-            Vector3 ledgeLeftEdge = ledgeTrans.position + (-ledgeTrans.right * getWorldScaleOfX(ledgeTrans) / 2);
             leftHandEdge += -charControl.transform.right * curSpeed * Time.deltaTime;
-            if (Vector3.Distance(leftHandEdge, ledgeLeftEdge) > 0.275f)
+            if (Vector3.Distance(leftHandEdge, charControl.ledgeCheckers[0].grabbedLedge.ledgeLeftEdge) > 0.275f)
             {
                 return true;
             }
@@ -46,9 +45,8 @@ public class CanMoveLedgeHorizontal : MovingStateData
         else if (charControl.isMovingRight)
         {
             Vector3 rightHandEdge = (charControl.ledgeCheckers[1].transform.right * getWorldScaleOfX(charControl.ledgeCheckers[1].transform) / 2) + charControl.ledgeCheckers[1].transform.position;
-            Vector3 ledgeRightEdge = ledgeTrans.position + (ledgeTrans.right * getWorldScaleOfX(ledgeTrans) / 2);
             rightHandEdge += charControl.transform.right * curSpeed * Time.deltaTime;
-            if (Vector3.Distance(rightHandEdge, ledgeRightEdge) > 0.275f)
+            if (Vector3.Distance(rightHandEdge, charControl.ledgeCheckers[0].grabbedLedge.ledgeRightEdge) > 0.275f)
             {
                 return true;
             }
@@ -56,7 +54,7 @@ public class CanMoveLedgeHorizontal : MovingStateData
         return false;
     }
 
-    private float getWorldScaleOfX(Transform trans)
+    public float getWorldScaleOfX(Transform trans)
     {
         float x = trans.localScale.x;
         Transform parentTrans = trans;

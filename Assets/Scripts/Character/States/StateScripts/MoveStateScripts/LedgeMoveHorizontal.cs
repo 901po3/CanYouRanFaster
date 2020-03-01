@@ -37,7 +37,7 @@ public class LedgeMoveHorizontal : MovingStateData
         if (charControl.isMovingLeft)
         {
             Vector3 leftHandEdge = (-charControl.ledgeCheckers[0].transform.right * getWorldScaleOfX(charControl.ledgeCheckers[0].transform) / 2) + charControl.ledgeCheckers[0].transform.position;
-            Vector3 ledgeLeftEdge = ledgeTrans.position + (-ledgeTrans.right * getWorldScaleOfX(ledgeTrans) / 2);
+            Vector3 ledgeLeftEdge = charControl.ledgeCheckers[0].grabbedLedge.ledgeLeftEdge;
             Debug.DrawRay(leftHandEdge, Vector3.up * 10, Color.yellow);
             Debug.DrawRay(ledgeLeftEdge, Vector3.up * 10, Color.yellow);
             if (Vector3.Distance(leftHandEdge, ledgeLeftEdge) > 0.25f)
@@ -52,7 +52,7 @@ public class LedgeMoveHorizontal : MovingStateData
         else if(charControl.isMovingRight)
         {
             Vector3 rightHandEdge = (charControl.ledgeCheckers[1].transform.right * getWorldScaleOfX(charControl.ledgeCheckers[1].transform) / 2) + charControl.ledgeCheckers[1].transform.position;
-            Vector3 ledgeRightEdge = ledgeTrans.position + (ledgeTrans.right * getWorldScaleOfX(ledgeTrans) / 2);
+            Vector3 ledgeRightEdge = charControl.ledgeCheckers[0].grabbedLedge.ledgeRightEdge;
             Debug.DrawRay(rightHandEdge, Vector3.up * 10);
             Debug.DrawRay(ledgeRightEdge, Vector3.up * 10);
             rightHandEdge += charControl.transform.right * curSpeed * Time.deltaTime;

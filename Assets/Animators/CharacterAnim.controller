@@ -821,12 +821,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListAbilityData:
   - {fileID: 11400000, guid: e3a0f3d029d8eea44ae5123fe5768776, type: 2}
-  - {fileID: 11400000, guid: e762390ea72e0524db9febf070c9cf04, type: 2}
+  - {fileID: 11400000, guid: 2cacb5f8f971f334990ca278781e42d6, type: 2}
   - {fileID: 11400000, guid: 9cfd3aa5bdc037a4cbdc771b816a611b, type: 2}
   - {fileID: 11400000, guid: dceccdeeb37407a4bab60201f74d9568, type: 2}
   - {fileID: 11400000, guid: 8ebb665556817444c97df548d272f6e3, type: 2}
   - {fileID: 11400000, guid: 957e28b3a33ad654eb6adbbcd31cdb99, type: 2}
-  - {fileID: 11400000, guid: 2cacb5f8f971f334990ca278781e42d6, type: 2}
+  - {fileID: 11400000, guid: e762390ea72e0524db9febf070c9cf04, type: 2}
 --- !u!91 &9100000
 AnimatorController:
   m_ObjectHideFlags: 0
@@ -841,61 +841,61 @@ AnimatorController:
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: velX
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: velZ
     m_Type: 1
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: IdleNum
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isJumping
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: forceTransition
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: grounded
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: transitionIndex
     m_Type: 3
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: isLedgeHorizontalMove
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   - m_Name: manualFall
     m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
-    m_Controller: {fileID: 0}
+    m_Controller: {fileID: 9100000}
   m_AnimatorLayers:
   - serializedVersion: 5
     m_Name: Base Layer

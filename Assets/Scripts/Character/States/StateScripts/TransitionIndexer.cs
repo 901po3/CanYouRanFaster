@@ -12,7 +12,8 @@ public class TransitionIndexer : StateData
         LEFT,
         RIGHT,
         JUMP,
-        GRABBING_LEDGE
+        GRABBING_LEDGE,
+        CLIMB_LEDGE
     }
 
     public int index;
@@ -78,7 +79,13 @@ public class TransitionIndexer : StateData
                     }
                     break;
                 case TransitionConditionType.GRABBING_LEDGE:
-                    if(!control.ledgeCheckers[0].isGrabbingLedge || !control.ledgeCheckers[1].isGrabbingLedge ||
+                    if(!control.ledgeCheckers[0].isGrabbingLedge || !control.ledgeCheckers[1].isGrabbingLedge)
+                    {
+                        return false;
+                    }
+                    break;
+                case TransitionConditionType.CLIMB_LEDGE:
+                    if(!control.ledgeCheckers[0].grabbedLedge.canClimbUp ||
                         control.ledgeCheckers[0].grabbedLedge != control.ledgeCheckers[1].grabbedLedge)
                     {
                         return false;
