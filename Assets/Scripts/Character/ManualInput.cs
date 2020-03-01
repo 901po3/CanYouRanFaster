@@ -31,7 +31,7 @@ public class ManualInput : MonoBehaviour
     private void Update()
     {
         Moving();
-        Jumping();
+        charControl.isJumping = jumpInput;
     }
 
     private void Moving()
@@ -61,11 +61,6 @@ public class ManualInput : MonoBehaviour
 
         animator.SetFloat("velX", Input.GetAxis("Horizontal"));
         animator.SetFloat("velZ", Input.GetAxis("Vertical"));
-    }
-
-    private void Jumping()
-    {
-       charControl.isJumping = jumpInput;
     }
 
     private void OnEnable()
