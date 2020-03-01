@@ -38,6 +38,6 @@ MonoBehaviour:
     m_RotationOrder: 4
   speed: 5
   rotSpeed: 5
-  blockDistance: 0.08
+  blockDistance: 0.1
   useMomentum: 0
   maxMometum: 0

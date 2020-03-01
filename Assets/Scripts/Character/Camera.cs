@@ -9,12 +9,12 @@ public class Camera : MonoBehaviour
     private Vector2 cameraAxis;
     #endregion
 
+    private GameObject player;
     private GameObject playerPivot;
     private GameObject cameraMan;
     private GameObject camPivot;
 
-    public bool goDown = false;
-    public bool goUp = false;
+    public float facingValue = 0;
 
     [SerializeField] float speed;
     [SerializeField] float rotSpeed;
@@ -22,10 +22,13 @@ public class Camera : MonoBehaviour
     [SerializeField] float maxHeight;
     [SerializeField] float zoomSpeed;
     [SerializeField] float distance;
+    private float originalDistance;
 
-    float originYHeight;
-    float fallingTimer = 0.0f;
-    bool fallingCam = false;
+    private float originYHeight;
+    private float fallingTimer = 0.0f;
+    private bool fallingCam = false;
+
+    private bool autoMoveOn = false;
 
     private void OnEnable()
     { 
@@ -45,17 +48,54 @@ public class Camera : MonoBehaviour
 
     private void Start()
     {
+        player = GameObject.FindGameObjectWithTag("Player");
         playerPivot = GameObject.Find("playerPivot");
         cameraMan = GameObject.Find("cameraMan");
         camPivot = GameObject.Find("camPivot");
 
         originYHeight = cameraMan.transform.eulerAngles.x;
+        originalDistance = distance;
     }
 
     private void Update()
     {
-        Rotate();
+        UpdateAutoMove();
+        facingValue = Vector3.Dot(cameraMan.transform.forward, player.transform.forward);
         MoveToDistance();
+        if (!autoMoveOn)
+        {
+            Rotate();
+        }
+        else
+        {
+            DropToHangCamMove();
+        }
+
+    }
+
+    private void UpdateAutoMove()
+    {
+        autoMoveOn = false;
+        if (player.GetComponent<CharacterControl>().isDroppingToHang)
+        {
+            autoMoveOn = true;
+        }
+    }
+
+    private void DropToHangCamMove()
+    {
+        if (player.GetComponent<CharacterControl>().isDroppingToHang)
+        {
+            FaceBack(300);
+        }
+    }
+
+    private void FaceBack(float speed)
+    {
+        cameraMan.transform.position = playerPivot.transform.position;
+        Quaternion quaternion = Quaternion.LookRotation(-player.transform.forward);
+        cameraMan.transform.rotation = Quaternion.RotateTowards(cameraMan.transform.rotation, quaternion, speed * Time.deltaTime);
+        transform.rotation = cameraMan.transform.rotation;
     }
 
     private void MoveToDistance()
@@ -129,7 +169,5 @@ public class Camera : MonoBehaviour
         Quaternion rot = Quaternion.Euler(angle);
         cameraMan.transform.rotation = Quaternion.Slerp(cameraMan.transform.rotation, rot, rotSpeed * Time.deltaTime);
         transform.rotation = cameraMan.transform.rotation;
-
-
     }
 }

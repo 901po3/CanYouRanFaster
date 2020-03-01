@@ -6,6 +6,7 @@ public class ManualInput : MonoBehaviour
 {
     private CharacterControl charControl;
     private Animator animator;
+    private Camera mainCamera;
 
     #region Input Actions
     private PlayerInputAction playerInputAction;
@@ -16,6 +17,7 @@ public class ManualInput : MonoBehaviour
 
     private void Awake()
     {
+        mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         charControl = gameObject.GetComponent<CharacterControl>();
         animator = gameObject.GetComponent<Animator>();
         playerInputAction = new PlayerInputAction();
@@ -37,8 +39,24 @@ public class ManualInput : MonoBehaviour
         charControl.isMoving = (playerAxis != Vector2.zero) ? true : false;
         charControl.isMovingForward = (playerAxis.y > 0) ? true : false;
         charControl.isMovingBackward = (playerAxis.y < 0) ? true : false;
-        charControl.isMovingRight = (playerAxis.x > 0) ? true : false;
-        charControl.isMovingLeft = (playerAxis.x < 0) ? true : false;
+        if(charControl.ledgeCheckers[0].isGrabbingLedge || charControl.ledgeCheckers[1].isGrabbingLedge)
+        {
+            if(mainCamera.facingValue >= 0)
+            {
+                charControl.isMovingRight = (playerAxis.x > 0) ? true : false;
+                charControl.isMovingLeft = (playerAxis.x < 0) ? true : false;
+            }
+            else
+            {
+                charControl.isMovingRight = (playerAxis.x > 0) ? false : true;
+                charControl.isMovingLeft = (playerAxis.x < 0) ? false : true;
+            }
+        }
+        else if(!charControl.ledgeCheckers[0].isGrabbingLedge && !charControl.ledgeCheckers[1].isGrabbingLedge)
+        {
+            charControl.isMovingRight = (playerAxis.x > 0) ? true : false;
+            charControl.isMovingLeft = (playerAxis.x < 0) ? true : false;
+        }
         charControl.isDropToHang = (charControl.bottomLedge != null && dropToHangInput) ? true : false;
 
         animator.SetFloat("velX", Input.GetAxis("Horizontal"));

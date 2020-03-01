@@ -25,6 +25,7 @@ public class CharacterControl : MonoBehaviour
     public bool isMovingLeft = false;
     public bool isJumping = false;
     public bool isDropToHang = false;
+    public bool isDroppingToHang = false;
 
     public float gravityMultiplier = 0.0f;
     public float pullMultiplier = 0.0f;

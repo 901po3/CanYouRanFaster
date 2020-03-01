@@ -12,6 +12,7 @@ public class DropToHang : StateData
         CharacterControl charControl = characterState.GetCharacterControl(animator);
         if(charControl.bottomLedge != null)
         {
+            charControl.isDroppingToHang = true;
             ledge = charControl.bottomLedge;
             GameObject anim = charControl.gameObject;
             Transform originParent = anim.transform.parent;
@@ -37,14 +38,7 @@ public class DropToHang : StateData
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        //CharacterControl charControl = characterState.GetCharacterControl(animator);
-        //GameObject anim = charControl.gameObject;
-        //Transform originParent = anim.transform.parent;
-        //anim.transform.parent = charControl.bottomLedge.transform;
-        //anim.transform.localPosition = new Vector3(anim.transform.localPosition.x + charControl.bottomLedge.DropToHangEndOffset.x, charControl.bottomLedge.DropToHangEndOffset.y, charControl.bottomLedge.DropToHangEndOffset.z);
-        //anim.transform.localRotation = Quaternion.Euler(0, 0, 0);
-        //anim.transform.parent = originParent;
-        //charControl.RIGIDBODY.velocity = Vector3.zero;
-        //charControl.transform.localScale = new Vector3(1, 1, 1);
+        CharacterControl charControl = characterState.GetCharacterControl(animator);
+        charControl.isDroppingToHang = false;
     }
 }
