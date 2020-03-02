@@ -10,10 +10,6 @@ public class MovingStateData : StateData
     public float blockDistance;
     private bool self;
 
-    [Header("Momentum")]
-    public bool useMomentum = false;
-    public float maxMometum = 0.0f;
-
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo) 
     {
        characterState.GetCharacterControl(animator).airMomentum = Vector3.zero;

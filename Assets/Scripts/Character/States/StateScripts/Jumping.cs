@@ -12,7 +12,7 @@ public class Jumping : StateData
 
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
-        charControl = characterState.GetCharacterControl(animator);
+        charControl = characterState.GetCharacterControl(animator);     
         charControl.RIGIDBODY.AddForce(Vector3.up * jumpForce);
         animator.SetBool("grounded", false);
     }

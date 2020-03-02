@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "New State", menuName = "Hyukin's_Game/AbilityData/Move")]
-public class Move : MovingStateData
+[CreateAssetMenu(fileName = "New State", menuName = "Hyukin's_Game/AbilityData/JumpMove")]
+public class JumpMove : MovingStateData
 {
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {

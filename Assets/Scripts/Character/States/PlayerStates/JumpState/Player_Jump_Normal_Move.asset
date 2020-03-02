@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95b949cd5c220d24d80e2b5acd9c8314, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b26f7445f042f84b9014f8ea98cb11d, type: 3}
   m_Name: Player_Jump_Normal_Move
   m_EditorClassIdentifier: 
   speedGraph:
@@ -26,7 +26,7 @@ MonoBehaviour:
       outWeight: 0
     - serializedVersion: 3
       time: 1
-      value: 1
+      value: 0.1
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -36,8 +36,6 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  speed: 7
-  rotSpeed: 2
-  blockDistance: 0.1
-  useMomentum: 0
-  maxMometum: 1
+  speed: 50
+  rotSpeed: 5
+  blockDistance: 0.75

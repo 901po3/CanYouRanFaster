@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Player_Jump_Normal
   m_EditorClassIdentifier: 
   jumpForce: 360
+  moveForce: 600
   graviy:
     serializedVersion: 2
     m_Curve:

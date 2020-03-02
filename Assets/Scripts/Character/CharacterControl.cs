@@ -30,7 +30,7 @@ public class CharacterControl : MonoBehaviour
 
     public float gravityMultiplier = 0.0f;
     public float pullMultiplier = 0.0f;
-
+    public Vector3 velocity = Vector3.zero;
     public Vector3 airMomentum = Vector3.zero;
 
     private Rigidbody rigidbody;
@@ -99,6 +99,8 @@ public class CharacterControl : MonoBehaviour
         {
             RIGIDBODY.velocity += Vector3.down * pullMultiplier;
         }
+        if (!isMoving)
+            velocity = Vector3.zero;
     }
 
     public void MoveToFalse()

@@ -22,9 +22,14 @@ public class MoveBack : MovingStateData
 
         RoateToCamFacingDir(charControl);
         float curSpeed = CalculateSpeed(charControl, stateInfo);
+        charControl.velocity = Vector3.zero;
 
         if (charControl.isMovingBackward && !CheckEdge(charControl, charControl.backSpheres, -charControl.transform.forward))
+        {
             charControl.transform.Translate(Vector3.back * curSpeed * Time.deltaTime);
+            charControl.velocity.z = -curSpeed;
+        }
+            
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)

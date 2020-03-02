@@ -22,9 +22,13 @@ public class MoveLeft : MovingStateData
 
         RoateToCamFacingDir(charControl);
         float curSpeed = CalculateSpeed(charControl, stateInfo);
+        charControl.velocity = Vector3.zero;
 
         if (charControl.isMovingLeft && !CheckEdge(charControl, charControl.leftSpheres, -charControl.transform.right))
+        {
+            charControl.velocity.x = -curSpeed;
             charControl.transform.Translate(Vector3.left * curSpeed * Time.deltaTime);
+        }
     }
 
     public override void OnExit(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
