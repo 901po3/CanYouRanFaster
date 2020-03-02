@@ -1298,7 +1298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ListAbilityData:
   - {fileID: 11400000, guid: 8587bd953943cab419d29b67a1081b69, type: 2}
-  - {fileID: 11400000, guid: f4ab4c4da5e92424a86980fe8e563841, type: 2}
+  - {fileID: 11400000, guid: 4dbdf7156a1c43b4481992d906df1907, type: 2}
   - {fileID: 11400000, guid: a528c0efbd63b4041a3e5400c3b13d5c, type: 2}
   - {fileID: 11400000, guid: d9fbdc0314c95e84588576bc64e96e70, type: 2}
 --- !u!114 &3866484766477884275
@@ -1609,6 +1609,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 227e821e4313d9c409226563cd08c8c0, type: 2}
   - {fileID: 11400000, guid: 2e1fed7897777004fa4ff921d100419b, type: 2}
   - {fileID: 11400000, guid: d9fbdc0314c95e84588576bc64e96e70, type: 2}
+  - {fileID: 11400000, guid: c4b05f49e28ea5149974b194a0988934, type: 2}
 --- !u!206 &7642475372753270215
 BlendTree:
   m_ObjectHideFlags: 1
