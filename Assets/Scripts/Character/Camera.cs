@@ -62,10 +62,9 @@ public class Camera : MonoBehaviour
         UpdateAutoMove();
         facingValue = Vector3.Dot(cameraMan.transform.forward, player.transform.forward);
         MoveToDistance();
-        Rotate();
         if (!autoMoveOn)
         {
-
+            Rotate();
         }
         else
         {
