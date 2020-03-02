@@ -34,7 +34,6 @@ public class LedgeMoveHorizontal : MovingStateData
     private void LedgeMove(CharacterControl charControl, Animator animator, float curSpeed)
     {
         Transform ledgeTrans = charControl.ledgeCheckers[0].grabbedLedge.transform;
-        charControl.velocity = Vector3.zero;
         if (charControl.isMovingLeft)
         {
             Vector3 leftHandEdge = (-charControl.ledgeCheckers[0].transform.right * getWorldScaleOfX(charControl.ledgeCheckers[0].transform) / 2) + charControl.ledgeCheckers[0].transform.position;
@@ -46,7 +45,6 @@ public class LedgeMoveHorizontal : MovingStateData
                 if (Vector3.Distance(leftHandEdge, ledgeLeftEdge) > 0.25f)
                 {
                     charControl.transform.Translate(Vector3.left * curSpeed * Time.deltaTime);
-                    charControl.velocity.x = -curSpeed;
                 }
                 else
                 {
@@ -61,7 +59,6 @@ public class LedgeMoveHorizontal : MovingStateData
                 if (Vector3.Distance(leftHandEdge, ledgeLeftEdge) > 0.25f)
                 {
                     charControl.transform.Translate(Vector3.left * curSpeed * Time.deltaTime);
-                    charControl.velocity.x = -curSpeed;
                 }
                 else
                 {
@@ -81,7 +78,6 @@ public class LedgeMoveHorizontal : MovingStateData
                 if (Vector3.Distance(rightHandEdge, ledgeRightEdge) > 0.25f)
                 {
                     charControl.transform.Translate(Vector3.right * curSpeed * Time.deltaTime);
-                    charControl.velocity.x = curSpeed;
                 }
                 else
                 {
@@ -97,7 +93,6 @@ public class LedgeMoveHorizontal : MovingStateData
                 if (Vector3.Distance(rightHandEdge, ledgeRightEdge) > 0.25f)
                 {
                     charControl.transform.Translate(Vector3.right * curSpeed * Time.deltaTime);
-                    charControl.velocity.x = curSpeed;
                 }
                 else
                 {

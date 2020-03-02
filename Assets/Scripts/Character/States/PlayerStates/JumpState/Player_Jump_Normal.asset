@@ -12,8 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: db8fc84e0143fec4199f4811adfec4f6, type: 3}
   m_Name: Player_Jump_Normal
   m_EditorClassIdentifier: 
-  jumpForce: 360
-  moveForce: 600
+  jumpForce: 320
   graviy:
     serializedVersion: 2
     m_Curve:

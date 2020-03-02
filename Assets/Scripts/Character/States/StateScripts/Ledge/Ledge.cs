@@ -14,7 +14,7 @@ public class Ledge : MonoBehaviour
     public Vector3 ledgeRightEdge;
     public GameObject leftLedge;
     public GameObject rightLedge;
-    private float sideCheckerDis = 0.1f;
+    public float sideCheckerDis = 0.1f;
     private void Start()
     {
     }
