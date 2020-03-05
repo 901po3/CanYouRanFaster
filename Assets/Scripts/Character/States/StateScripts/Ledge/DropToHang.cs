@@ -10,7 +10,7 @@ public class DropToHang : StateData
     public override void OnEnter(CharacterState characterState, Animator animator, AnimatorStateInfo stateInfo)
     {
         CharacterControl charControl = characterState.GetCharacterControl(animator);
-        if(charControl.bottomLedge != null)
+        if (charControl.bottomLedge != null)
         {
             charControl.isDroppingToHang = true;
             ledge = charControl.bottomLedge;

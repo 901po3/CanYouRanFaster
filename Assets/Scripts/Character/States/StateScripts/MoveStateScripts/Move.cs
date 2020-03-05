@@ -25,6 +25,17 @@ public class Move : MovingStateData
             return;
         }
 
+        if(charControl.ledgeCheckers[0] != null)
+        {
+            charControl.ledgeCheckers[0].grabbedLedge = null;
+            charControl.ledgeCheckers[0].isGrabbingLedge = false;
+        }
+        if (charControl.ledgeCheckers[1] != null)
+        {
+            charControl.ledgeCheckers[1].grabbedLedge = null;
+            charControl.ledgeCheckers[1].isGrabbingLedge = false;
+        }
+
         RoateToCamFacingDir(charControl);
         float curSpeed = CalculateSpeed(charControl, stateInfo);
         charControl.velocity = Vector3.zero;

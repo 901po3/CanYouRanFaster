@@ -73,6 +73,7 @@ public class GroundDetecter : StateData
                 }
             }
         }
+
         return charControl.isOnGround;
     }
 
